@@ -1,0 +1,104 @@
+
+
+
+  /*copied*/
+  form{
+    text-align: left;
+}
+
+.input-danger{
+    color: #495057;
+    background-color: #fff;
+    border-color: rgb(196, 0, 0);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
+
+.forgetPassword{
+    display: block;
+    padding: 20px;
+    font-weight: bold;
+    font-size: large;
+    color: wheat;
+    text-decoration-line: none;
+    cursor: pointer;
+}
+
+.signin > * {
+    color : black !important;
+    border-radius: 20px;
+    padding: 4%;
+    box-shadow: 0px 0px 0px 0px   black;
+}
+
+
+
+   .clickbtn {
+
+    padding: 3px !important;
+ 
+  }
+  /*
+  .clickbtn:hover {
+    background-color: #60491c;
+   }
+   */
+
+
+
+  .StyleNamePassword{
+    text-align: left !important;
+    font-size: larger !important;
+    font-weight: bolder;
+  }
+
+
+  
+  .UserAndPassword{
+    text-align: center;
+    font-size: large;
+    font-weight: bolder !important;
+    color: black !important;
+    text-decoration: none;
+    cursor: pointer !important;
+    display: inline-block;
+  }
+  
+
+.RadioLabel {
+  font-size: large;
+}
+
+.Radioinput {
+  height: 20px;
+  width: 20px;
+  top: 15px;
+  left: 62px;
+}
+
+input {
+  text-align: left;
+}
+
+.Myfa {
+  display: inline-block;
+  margin-left: 3px;
+}
+
+.material-icons{
+  cursor: pointer;
+}
+
+.filedslabel{
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+/* .clickbtn {
+    margin: 10px 20px;
+} */
+
+
+input {
+  border: 1px solid goldenrod;
+}

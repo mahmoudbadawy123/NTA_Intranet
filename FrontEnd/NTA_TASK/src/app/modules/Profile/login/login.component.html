@@ -1,0 +1,59 @@
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" 
+color = "#fff" type = "square-jelly-box" 
+[fullScreen] = "true"><p style="color: white" > 
+  Loading... </p></ngx-spinner>
+
+<div class="LoginContainer container">
+  <div class="row ">
+    <div class="col-12 text-right ">
+      <h1>
+        Log in To your Account  
+      </h1>
+<!-- all styles of icons (in Font Awesome Classic by default) -->
+
+    </div>
+    <div class="container-fluid  d-flex align-items-center p-lg-0">
+      <div class="col-12 mx-auto signin">
+
+        <div class="W-100 ">
+          <div class="container-fluid FixBottomBlock_login p-0">
+
+        <form [formGroup]="signinForm" class="SigninStyle row">
+          <div class="col-md-8 col-sm-12 col-12 d-block m-auto">
+            <div class="form-group text-right col-12">
+              <strong class="filedslabel">
+                <label>Email </label>
+              </strong>
+              <input  formControlName="Email" type="text" class="form-control allownumericwithdecimal"
+                placeholder="Email" required>
+              <small *ngIf="form['Email'].hasError('required') &&
+                form['Email'].touched" class="form-text text-danger">
+               Enter your  Email     </small>
+              <small *ngIf="form['Email'].hasError('email')
+                  && form['Email'].touched" class="form-text text-danger"> Please Write your email Correct</small>
+            </div>
+            <div class="form-group col-12">
+              <strong class="filedslabel">
+                <label for="exampleInputPassword1" class="UserAndPassword"> Password</label>
+              </strong>
+              <input formControlName="Password" [class.input-danger]="form['Password'].invalid &&
+                  form['Password'].touched" type="Password" class="form-control StyleNamePassword"
+                id="exampleInputPassword1" placeholder=" Password">
+              <small *ngIf="form['Password'].invalid &&
+                form['Password'].touched" class="form-text text-danger">  Enter  your Password </small>
+            </div>
+
+  
+            <div class=" row  ">
+              <button type="submit" (click)="submit()" class="btn col-md-5 col-sm-12 col-12 clickbtn d-block mx-auto btn-primary mt-5 ">log In </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+      </div>
+    </div>
+  </div>
+</div>

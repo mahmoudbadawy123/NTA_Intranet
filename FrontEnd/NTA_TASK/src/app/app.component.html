@@ -1,0 +1,180 @@
+<mat-drawer-container [class.drawer-opened]="drawer.opened" class="example-container">
+  <mat-drawer #drawer class="drawer" mode="side" opened="false">
+
+
+    <mat-toolbar class="header">
+      <div class="w-100" *ngIf="TYPE">
+        <!-- <div>Logo</div> -->
+        <mat-icon class="close Cursor" (click)="drawer.close()">close</mat-icon>
+      </div>
+    </mat-toolbar>
+    <div class="Sidecontents">
+
+
+      <div class="container my-3" dir="ltr">
+        <!-- <div class="row  h2 text-left d-block">
+          Menu
+        </div> -->
+
+        <div class="row navheaderitems text-left d-block mt-3 ms-3  mt-2">
+          <span class="d-inline-block col-2 ">
+            <mat-icon> person_pin</mat-icon>
+            <i class="fas fa-fw fa-trash-alt"></i>
+          </span>
+          <span class="d-inline-block h5 col-10"> {{this.User?.fullname}} </span>
+        </div>
+
+        <div class="row navheaderitems text-left d-block  ms-3">
+          <span class="d-inline-block col-2 ">
+            <!-- <i class="fa-solid fa-user"></i> -->
+            <mat-icon>alternate_email</mat-icon>
+          </span>
+          <span class="d-inline-block h5 col-10"> {{this.User?.email}} </span>
+        </div>
+
+        <div class="row navheaderitems text-left d-block  ms-3">
+          <span class="d-inline-block col-2 ">
+            <!-- <i class="fa-solid fa-user"></i> -->
+            <mat-icon>perm_contact_calendar</mat-icon>
+          </span>
+          <span class="d-inline-block h5 col-10"> {{this.User?.username}} </span>
+        </div>
+
+
+        <div class="row navheaderitems text-left d-block  ms-3" *ngIf="this.User?.groupName">
+          <span class="d-inline-block col-2 ">
+            <!-- <i class="fa-solid fa-user"></i> -->
+            <mat-icon>work</mat-icon>
+          </span>
+          <span class="d-inline-block h5 col-10"> {{this.User?.groupName}} </span>
+        </div>
+
+
+     
+
+    
+
+
+      </div>
+
+
+      <div class="container my-3" dir="ltr">
+ <!-- admin Section -->
+
+        <div class="   admin text-center  " *ngIf="TYPE==1">
+          <div class="col-12 p-1">
+            <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
+              [routerLink]="['/Admin/Announcement']" [routerLinkActive]="['is-active']">
+              Announcement & News</button>
+          </div>
+          <div class="col-12 p-1">
+            <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
+              [routerLink]="['/Admin/story']" [routerLinkActive]="['is-active']">
+              NTA story & Roots</button>
+          </div>
+
+          <div class="col-12 p-1">
+            <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
+              [routerLink]="['/Admin/Calender']" [routerLinkActive]="['is-active']">
+              NTA Calender </button>
+          </div>
+
+          <div class="col-12 p-1">
+            <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
+              [routerLink]="['/Admin/MagicTools']" [routerLinkActive]="['is-active']">
+              Discover Magic Tools </button>
+          </div>
+
+          <div class="col-12 p-1">
+            <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
+              [routerLink]="['/Admin/Meetings']" [routerLinkActive]="['is-active']">
+              My Meetings</button>
+          </div>
+
+        </div>
+
+
+ <!-- Employee Section -->
+        <div class="   Employee text-center  " *ngIf="TYPE==2">
+          <div class="col-12 p-1">
+            <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
+              [routerLink]="['/Employee/Announcement']" [routerLinkActive]="['is-active']">
+              Announcement & News</button>
+          </div>
+          <div class="col-12 p-1">
+            <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
+              [routerLink]="['/Employee/story']" [routerLinkActive]="['is-active']">
+              NTA story & Roots</button>
+          </div>
+
+          <div class="col-12 p-1">
+            <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
+              [routerLink]="['/Employee/Calender']" [routerLinkActive]="['is-active']">
+              NTA Calender </button>
+          </div>
+
+          <div class="col-12 p-1">
+            <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
+              [routerLink]="['/Employee/MagicTools']" [routerLinkActive]="['is-active']">
+              Discover Magic Tools </button>
+          </div>
+
+          <div class="col-12 p-1">
+            <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
+              [routerLink]="['/Employee/MyMeetings']" [routerLinkActive]="['is-active']">
+              My Meetings</button>
+          </div>
+
+        </div>
+
+
+        <div class=" row  text-center  ">
+          <div class="col-lg-12 col-md-12 col-sm-6 col-12  p-1" *ngIf="TYPE">
+            <button mat-button class="MyNavBtn  w-100 " (click)="logout();drawer.toggle();"
+              [routerLink]="['/Profile/login']">
+              log out 
+              <mat-icon>exit_to_app</mat-icon>
+            </button>
+
+          </div>
+
+
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </mat-drawer>
+
+  <mat-toolbar class="main header">
+    <div class="w-100" *ngIf="TYPE">
+      <mat-icon style="font-size: x-large; cursor: pointer;" *ngIf="!drawer.opened" (click)="drawer.toggle()">
+        menu
+      </mat-icon>
+      
+      
+      
+      <mat-icon style="font-size: x-large; float: right; cursor: pointer;" (click)="logout();drawer.close();" [routerLink]="['/Profile/login']">
+        exit_to_app
+      </mat-icon>
+
+      <!-- <div>Header</div> -->
+    </div>
+  </mat-toolbar>
+
+  <div class="main contents">
+    <router-outlet></router-outlet>
+  </div>
+
+
+  <mat-toolbar class="main footer p-0 m-0 ">
+    <span class="Footer-data">
+      Made with @NTA Company   
+    </span>
+  </mat-toolbar>
+</mat-drawer-container>

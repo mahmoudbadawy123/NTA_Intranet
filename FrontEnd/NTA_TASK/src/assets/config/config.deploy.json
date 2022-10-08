@@ -1,0 +1,11 @@
+{
+    "env": {
+    "name": "#{envName}",
+    "type": 1
+    },
+    "apiServer": {    
+    "url": "http://liveDomain:8012/api/",
+    "usingInternalApi":true
+    }
+    
+}

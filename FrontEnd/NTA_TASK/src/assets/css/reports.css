@@ -1,0 +1,319 @@
+﻿.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 10px !important;
+}
+@font-face {
+    font-family: "EISARIALBD";
+    src: url('/fonts/Eisarial.ttf');
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 2px !important;
+    padding-left:8px !important;
+    padding-right:8px !important;
+    line-height: .9 !important;    
+    border-top-width: 0 !important;
+}
+
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;  
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #eceeef;
+}
+
+
+
+.table .table {
+  background-color: #fff;
+}
+
+.table-sm th,
+.table-sm td {
+  padding: 0.3rem;
+}
+
+.table-bordered {
+  border: 1px solid #eceeef;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #eceeef;
+}
+
+.table-bordered thead th,
+.table-bordered thead td {
+  border-bottom-width: 2px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+.table-active,
+.table-active > th,
+.table-active > td {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+.table-hover .table-active:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+.table-hover .table-active:hover > td,
+.table-hover .table-active:hover > th {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+.table-success,
+.table-success > th,
+.table-success > td {
+  background-color: #dff0d8;
+}
+
+.table-hover .table-success:hover {
+  background-color: #d0e9c6;
+}
+
+.table-hover .table-success:hover > td,
+.table-hover .table-success:hover > th {
+  background-color: #d0e9c6;
+}
+
+.table-info,
+.table-info > th,
+.table-info > td {
+  background-color: #d9edf7;
+}
+
+.table-hover .table-info:hover {
+  background-color: #c4e3f3;
+}
+
+.table-hover .table-info:hover > td,
+.table-hover .table-info:hover > th {
+  background-color: #c4e3f3;
+}
+
+.table-warning,
+.table-warning > th,
+.table-warning > td {
+  background-color: #fcf8e3;
+}
+
+.table-hover .table-warning:hover {
+  background-color: #faf2cc;
+}
+
+.table-hover .table-warning:hover > td,
+.table-hover .table-warning:hover > th {
+  background-color: #faf2cc;
+}
+
+.table-danger,
+.table-danger > th,
+.table-danger > td {
+  background-color: #f2dede;
+}
+
+.table-hover .table-danger:hover {
+  background-color: #ebcccc;
+}
+
+.table-hover .table-danger:hover > td,
+.table-hover .table-danger:hover > th {
+  background-color: #ebcccc;
+}
+
+.thead-inverse th {
+  color: #fff;
+  background-color: #292b2c;
+}
+
+.thead-default th {
+  color: #464a4c;
+  background-color: #eceeef;
+}
+
+.table-inverse {
+  color: #fff;
+  background-color: #292b2c;
+}
+
+.table-inverse th,
+.table-inverse td,
+.table-inverse thead th {
+  border-color: #fff;
+}
+
+.table-inverse.table-bordered {
+  border: 0;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+table.center,div.center{
+    margin:auto;
+}
+.table-responsive.table-bordered {
+  border: 0;
+}
+
+.text-center{
+    text-align:center;
+}
+.text-left{
+    text-align:left;
+}
+html{
+    direction:ltr;
+}
+body {
+  background: rgb(204,204,204); 
+  direction:ltr;
+  font-size:12px !important;
+  font-family:EISARIALBD !important;
+  direction:ltr;
+  text-align:right;
+}
+page {
+  background: white;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+}
+    page[size="A4"] {
+        width: 210mm;        
+        position: relative;
+        overflow: hidden;
+    }
+.page-break {
+    page-break-before: always;
+}
+
+
+
+.print-header{
+     border-bottom: 3px solid #66ccff;
+     padding:15px;
+     height:27mm;
+     font-size:16px;
+     font-weight:bold;
+}
+.print-footer {  
+  color: #000;
+  border-top: 3px solid #66ccff;
+  text-align:left;
+  height:10mm;
+  padding-left:20px;
+  padding-right:20px;
+}
+
+.print-body{
+    height:245mm !important;
+}
+.auto-print{
+    display:none;
+}
+@media print {
+    #printtoolbar{
+        display:none !important;
+    }
+    .auto-print {
+        display: inherit !important;
+    }
+    body, page {
+        margin: 0;
+        box-shadow: 0;
+        padding:0;
+        margin:0;
+    }   
+    @page {
+        size: A4 portrait;
+        width: 210mm !important;
+        margin-top: 0.3cm;
+        margin-bottom: 0;
+        margin-left: 0.3cm;
+        margin-right: 0;
+    }
+
+    
+    .d-print-none{
+        display:none;
+    }
+    .toolbar{
+        display:none;
+    }
+    * {
+        -webkit-print-color-adjust: exact;
+    }
+}
+
+div.table{
+    display:table;
+    margin:0 !important;
+    padding:0 !important;
+    background-color:transparent !important;
+    
+}
+    div.table.bordered {
+        border: 1px solid black;
+        border-bottom-width: 0 !important;
+        border-right-width: 0 !important;
+    }
+div.row{
+    display:table-row;
+    padding:0 !important;
+    background-color:transparent !important;
+}
+div.cell{
+    display:table-cell;
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+    background-color:transparent !important;
+    padding-right:5px !important;
+}
+div.cell.bordered{
+    border-bottom:1px solid black;
+    border-right:1px solid black;
+}
+div.head{
+    display:table-header-group;
+    background-color:transparent !important;
+}
+div.tbody{
+    display:table-row-group;
+    background-color:transparent !important;
+}
+span.data{
+    font-weight:normal !important;
+}
+
+table,tr,td,th{
+    background-color:transparent !important;
+
+}
+
+table.table-bordered-2px {
+    border:1px solid black !important;
+}
+table.table-bordered-2px td,table.table-bordered-2px th{
+    border:1px solid black !important;
+    
+}

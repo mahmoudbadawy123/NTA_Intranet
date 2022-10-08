@@ -1,0 +1,88 @@
+<div dir="ltr" class="w-100">
+  <h2 class="text-center h2  HeaderOfPobUps">
+    Add New Event
+  </h2>
+
+  <form [formGroup]="Form" autocomplete="off">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-6">
+          <mat-form-field class="w-100">
+            <input placeholder="Event Name"
+              style="width: 100%"
+              matInput
+              formControlName="eventName"
+              required>
+          </mat-form-field>
+          <small *ngIf="form['eventName'].hasError('required') && 
+                form['eventName'].touched"
+            class="form-text text-danger">
+               please Enter Event Name </small>
+        </div>
+
+        <div class="col-12">
+          <mat-form-field class="w-100">
+            <input placeholder="  Description "
+              style="width: 100%"
+              matInput
+              formControlName="description"
+              required>
+          </mat-form-field>
+          <small *ngIf="form['description'].hasError('required') && 
+                form['description'].touched"
+            class="form-text text-danger">
+               please Enter  Description</small>
+        </div>
+
+
+
+        <div class=" col-12">
+          <mat-form-field class="d-block col-6 ">
+            <mat-select placeholder=" Notified To  "
+              formControlName="groupId">
+              <mat-option 
+              [value]="-1">
+              -- Choose -- 
+            </mat-option>
+              <mat-option *ngFor="let c of Groups"
+                [value]="c.id">
+                {{ c.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class=" col-12">
+          
+         
+
+          <mat-form-field>
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date"
+            formControlName="eventDateTime"
+              [min]="minDate" [max]="maxDate" [disabled]="disabled">
+            <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+              [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi"
+              [color]="color" [enableMeridian]="enableMeridian">
+            </ngx-mat-datetime-picker>
+          </mat-form-field>
+
+        </div>
+
+      </div>
+      <div class="row">
+        <mat-dialog-actions>
+          <button class="My_Btn mt-3 mx-auto col-lg-3 col-md-3 col-sm-4 col-xs-12  "
+            mat-raised-button
+            [disabled]="Form.invalid"
+            (click)="okClick()">Add</button>
+          <button class="My_Btn mt-3 mx-auto col-lg-3 col-md-3 col-sm-4 col-xs-12  "
+            mat-raised-button
+            (click)="cancel()">Cancel</button>
+        </mat-dialog-actions>
+      </div>
+  </div>
+  </form>
+
+</div>
