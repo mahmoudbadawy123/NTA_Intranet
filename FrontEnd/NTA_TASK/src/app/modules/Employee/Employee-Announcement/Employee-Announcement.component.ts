@@ -33,11 +33,6 @@ implements OnInit {
     this.GetData();
   }
 
-
- 
-
- 
-
 Data :any;
 GetData() {
       this.api.post(`${this.ControllerRoute}/GetAllForEmp`, this.page).subscribe(
@@ -53,11 +48,9 @@ GetData() {
   }
 
   getServerData(event: any) {
-    //debugger
       this.page.pageNumber = event.pageIndex;
       this.page.size = event.pageSize;
       this.GetData();
-    
     }
 
 }

@@ -51,7 +51,6 @@ ngOnInit() {
 }
 
 getServerData(event: any) {
-//debugger
 this.page.pageNumber = event.pageIndex;
 this.page.size = event.pageSize;
 this.GetData();
@@ -126,10 +125,6 @@ showEdit(item: any) {
 
  Form :any = {};
  Delete(item: any) {
-  debugger;
-
-  
-
   const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
     data: {
       title: 'Confirm Remove Item',
@@ -146,7 +141,6 @@ showEdit(item: any) {
           this.GetData();
         },
         (error) => {
-          console.log(error);
           this.alert.error(error);
         }
       );

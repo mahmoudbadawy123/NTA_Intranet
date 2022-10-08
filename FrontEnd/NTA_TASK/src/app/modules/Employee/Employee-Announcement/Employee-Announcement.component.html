@@ -18,22 +18,12 @@
   
   </div>
 
-
   <div class="row">
     <mat-paginator [length]="page.totalElements"
     [pageSize]="5"
     [pageSizeOptions]="[2,5, 10, 25, 100]"
     (page)="paginatorEvent = getServerData($event)">
   </mat-paginator>
-  </div>
-  
-
-
-  <ng-template #other_content>
-    <p class="text-center m-auto d-block h2">
-              There is no Announcements
-    </p>
-    </ng-template>
-    
+  </div>  
 </div>
 

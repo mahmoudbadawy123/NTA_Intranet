@@ -22,11 +22,7 @@ export class AdminAnnouncementComponent
   extends BaseComponent
   implements OnInit
 {
-  // private _formBuilder: any;
-  // MyForm: FormGroup;
-  // get form(): { [key: string]: AbstractControl } {
-  //   return this.MyForm.controls;
-  // }
+
 
 
   ControllerRoute:string = "Announcements";
@@ -49,7 +45,7 @@ export class AdminAnnouncementComponent
   public showSearch: boolean = false;
   public searchText!: string;
 
-  constructor(private router: Router,
+  constructor(
     private dialog: MatDialog,
     private api: ApiService,
     private spinner :NgxSpinnerService,

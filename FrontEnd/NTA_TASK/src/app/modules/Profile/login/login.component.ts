@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
   }
   constructor(  
     private api : ApiService, 
-    private route: ActivatedRoute,
     private Session : SessionService,
     private alert :  ToastrService,
     private spinner :NgxSpinnerService,
@@ -32,7 +31,6 @@ export class LoginComponent implements OnInit {
     {
 
     this.signinForm = new FormGroup({
-      // RegisterType: new FormControl("1"),
       Email:new FormControl('', [Validators.required , Validators.email]),
       Password: new FormControl('', Validators.required)
     });
@@ -64,11 +62,7 @@ debugger;
 
        this.Session.Set("Token" ,res["token"] );
        this.Session.setObj("User" ,res );
-      //  this.Session.Set("isAuthenticated" ,res["isAuthenticated"] );
-      //  this.Session.Set("email" ,res["email"] );
-      //  this.Session.Set("roles" ,res["roles"] );
-
-      this.Roles = res["roles"] ;
+       this.Roles = res["roles"] ;
 
        if(this.Roles.length > 0 &&  this.Roles.includes("Admin")){
         if(res["isFirstlogin"] == false){
@@ -86,11 +80,6 @@ debugger;
           this.router.navigate(["/Employee"])
         }
        }
-      //  else if (this.Roles.length == 0){
-      //   this.router.navigate(["/Profile/login"])
-      //  }
-
-     
        this.spinner.hide();
 
   }, (error)=>{
@@ -135,10 +124,7 @@ debugger;
                 this.router.navigate(["/Employee"])
               }
              }
-            //  else if (this.Roles.length == 0){
-            //   this.router.navigate(["/Profile/login"])
-            //  }
-      
+
            
              this.spinner.hide();
 

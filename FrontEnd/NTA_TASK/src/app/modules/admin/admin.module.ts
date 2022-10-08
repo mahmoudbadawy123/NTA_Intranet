@@ -19,12 +19,9 @@ import { AddAdminCalenderComponent } from './Admin-Calender/Add-Admin-Calender/A
 
 
 let Modules : any[]= [
-
-
   CommonModule,
   AdminRoutingModule,
   SharedModule,
-
 ]
 
 let EntryComponents : any[]= [

@@ -66,12 +66,10 @@ implements OnInit {
 
   okClick() {
     if(this.Form.value.groupId == -1){
-      console.log(this.Form.value);
       this.alert.warning("Please Choose Group that you will publish Story For");
       return;
     }
 
-    console.log(this.Form.value);
     this.api.post(`${this.ControllerRoute}/Add`, this.Form.value).subscribe(
       (res: any) => {
         this.alert.success("Story published Succesfully");

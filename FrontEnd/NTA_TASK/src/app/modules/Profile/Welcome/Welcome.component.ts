@@ -13,8 +13,6 @@ import { AuthenticationService } from '../../Shared/Shared-Services/Auth/Authent
 export class WelcomeComponent implements OnInit {
 
   constructor(
-    private alert :  ToastrService,
-    private spinner :NgxSpinnerService,
     private router: Router ,
     private authenticationService: AuthenticationService
   ) { 

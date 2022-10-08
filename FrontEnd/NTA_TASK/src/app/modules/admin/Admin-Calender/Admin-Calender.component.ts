@@ -18,7 +18,6 @@ import { Subject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
-  CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
 import { EventColor } from 'calendar-utils';
@@ -28,8 +27,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmDialogComponent } from '../../Shared/Shared-Components/confirm-dialog/confirm-dialog.component';
 import { ApiService } from '../../Shared/Shared-Services/http/Api.service';
-import { AddAdminStoryComponent } from '../Admin-story/Add-Admin-Story/Add-Admin-Story.component';
-import { UpdateAdminStoryComponent } from '../Admin-story/Update-Admin-Story/Update-Admin-Story.component';
 import { AddAdminCalenderComponent } from './Add-Admin-Calender/Add-Admin-Calender.component';
 import { UpdateAdminCalenderComponent } from './Update-Admin-Calender/Update-Admin-Calender.component';
 
@@ -217,7 +214,6 @@ showEdit(item: any) {
           this.closeOpenMonthViewDay();
         },
         (error) => {
-          console.log(error);
           this.alert.error(error);
         }
       );

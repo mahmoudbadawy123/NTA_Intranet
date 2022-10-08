@@ -19,11 +19,10 @@ implements OnInit {
   public showSearch: boolean = false;
   public searchText!: string;
 
-  constructor(private router: Router,
-    private dialog: MatDialog,
+  constructor(
     private api: ApiService,
     private spinner :NgxSpinnerService,
-    private alert: ToastrService,) { super();
+    ) { super();
 }
 
 
@@ -51,11 +50,9 @@ GetData() {
   }
 
   getServerData(event: any) {
-    //debugger
       this.page.pageNumber = event.pageIndex;
       this.page.size = event.pageSize;
       this.GetData();
-    
     }
 
 }

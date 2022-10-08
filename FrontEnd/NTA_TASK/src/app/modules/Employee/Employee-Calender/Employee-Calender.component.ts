@@ -7,9 +7,6 @@ import { isSameMonth, isSameDay, startOfDay, endOfDay } from 'date-fns';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
-import { AddAdminCalenderComponent } from '../../admin/Admin-Calender/Add-Admin-Calender/Add-Admin-Calender.component';
-import { UpdateAdminCalenderComponent } from '../../admin/Admin-Calender/Update-Admin-Calender/Update-Admin-Calender.component';
-import { ConfirmDialogComponent } from '../../Shared/Shared-Components/confirm-dialog/confirm-dialog.component';
 import { ApiService } from '../../Shared/Shared-Services/http/Api.service';
 import { ShowDataCalenderComponent } from './Show-Data-Calender/Show-Data-Calender.component';
 
@@ -54,20 +51,6 @@ export class EmployeeCalenderComponent implements OnInit {
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   actions: CalendarEventAction[] = [
-    // {
-    //   label: '<div class="btn btn-primary Edit">Edit</div>',
-    //   a11yLabel: 'Edit',
-    //   onClick: ({ event }: { event: CalendarEvent }): void => {
-    //     this.handleEvent('Edited', event);
-    //   },
-    // },
-    // {
-    //   label: '<div class="btn btn-primary Delete">Delete</div>',
-    //   a11yLabel: 'Delete',
-    //   onClick: ({ event }: { event: CalendarEvent }): void => {
-    //     this.handleEvent('Deleted', event);
-    //   },
-    // },
     {
       label: '<div class="btn btn-primary Delete">Show</div>',
       a11yLabel: 'Delete',
@@ -97,13 +80,6 @@ export class EmployeeCalenderComponent implements OnInit {
   
 
   handleEvent(action: string, event: CalendarEvent): void {
-    // if(action == "Edited"){
-    //   this.showEdit(event);
-    // }
-    // else if (action == "Deleted"){
-    //   this.Delete(event);
-    // }
-    // else
      if (action == "ShowDataOnly"){
       this.ShowDataOnly(event);
     }
@@ -172,63 +148,6 @@ ShowDataOnly(item: any) {
       }
     });
 }
-
-// showAdd() {
-//   let dialogRef = this.dialog.open(AddAdminCalenderComponent, {
-//     width: '1000px',
-//     height: '60vh'
-//   });
-//   dialogRef.afterClosed()
-//     .subscribe(data => {
-//       if (data) {
-//         this.GetData();
-//       }
-//     });
-// }
-
-// showEdit(item: any) {
-//   let dialogRef = this.dialog.open(UpdateAdminCalenderComponent, {
-//     width: '1000px',
-//     height: '60vh',
-//     data: item.id
-//   });
-//   dialogRef.afterClosed()
-//     .subscribe(data => {
-//       if (data) {
-//         this.GetData();
-//       }
-//     });
-// }
-
-//  Form :any = {};
-//  Delete(item: any) {
-//   const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
-//     data: {
-//       title: 'Confirm Remove Item',
-//       message: 'Are you sure, you want to remove  : ' + item.id.eventName
-//     }
-//   });
-//   confirmDialog.afterClosed().subscribe(result => {
-//     if (result === true) {
-//       this.api.post(`${this.ControllerRoute}/Delete`,item.id).subscribe(
-//         (res: any) => {
-//           this.alert.success("Deleting Item Done Succesfully");
-//           this.GetData();
-//           this.closeOpenMonthViewDay();
-//         },
-//         (error) => {
-//           console.log(error);
-//           this.alert.error(error);
-//         }
-//       );
-//     }
-//   });
-// }
-
-
-
-
-
 
 
 }

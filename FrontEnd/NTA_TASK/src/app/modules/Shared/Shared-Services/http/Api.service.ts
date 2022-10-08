@@ -1,6 +1,5 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { AppError } from 'src/app/common/error/app-error';
 import { ErrorExpectationFailed, ErrorBadInput, ErrorNotFound, ErrorConflict, ErrorAmbiguous, ErrorNoContent, ErrorUnauthorized, ErrorMethodNotAllowed } from 'src/app/common/error/errors-types';

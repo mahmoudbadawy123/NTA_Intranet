@@ -69,12 +69,10 @@ implements OnInit {
 
   okClick() {
     if(this.Form.value.groupId == -1){
-      console.log(this.Form.value);
       this.alert.warning("Please Choose Group that you will Update its Story For");
       return;
     }
 
-    console.log(this.Form.value);
     this.api.post(`${this.ControllerRoute}/Update`, this.Form.value).subscribe(
       (res: any) => {
         this.alert.success("Story Update Succesfully");

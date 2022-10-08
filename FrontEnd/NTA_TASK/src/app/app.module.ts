@@ -10,14 +10,8 @@ import { AppConfigService } from './Services/AppConfig.service';
 import { CookieService } from 'ngx-cookie-service';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import {  MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { TokenInterceptor } from './common/auth/token.interceptor';
-
-
-// export function initializeApp(appConfig: AppConfigService) {
-//   return () => appConfig.load();
-// }
-
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -49,18 +43,11 @@ let Services: any[] = [
   CookieService,
   AppConfigService,
   { provide: LocationStrategy, useClass: HashLocationStrategy },
-  // {
-  //   provide: APP_INITIALIZER,
-  //   useFactory: initializeApp,
-  //   deps: [AppConfigService],
-  //   multi: true,
-  // },
    TokenInterceptor,
    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
 	{provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}},
   { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
-
 ];
 
 let Pipes = [];
