@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Interanet.API.Controllers
 {
- 
     public class CalenderEventsController : AppControllerBase
     {
         private readonly ICalenderEventsService _CalenderEventsService;

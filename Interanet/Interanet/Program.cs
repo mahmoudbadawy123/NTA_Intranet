@@ -22,7 +22,7 @@ var builder = WebApplication.CreateBuilder(args);
 //    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 
 var connectionString = builder.Configuration.GetConnectionString("DefualtConnection");
-var JWTConf= builder.Configuration.GetSection("JWT");
+var JWTConf = builder.Configuration.GetSection("JWT");
 
 builder.Services.AddCors();
 builder.Services.Configure<JWT>(JWTConf);
@@ -42,7 +42,6 @@ builder.Services.AddAutoMapper(startUp);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseLazyLoadingProxies().UseSqlServer(connectionString));
 
-
 //services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
@@ -53,30 +52,15 @@ builder.Services.AddScoped<IAnnouncementsService, AnnouncementsService>();
 builder.Services.AddScoped<IStorysService, StorysService>();
 builder.Services.AddScoped<ICalenderEventsService, CalenderEventsService>();
 
-
-
-
-
-
-
-
-
-
-
-
 // End  add Business Services here
-
-
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
          .AddEntityFrameworkStores<ApplicationDbContext>();
-
 
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-                .AddJwtBearer(o =>
+}).AddJwtBearer(o =>
                 {
                     o.RequireHttpsMetadata = false;
                     o.SaveToken = false;
@@ -91,8 +75,6 @@ builder.Services.AddAuthentication(options =>
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
                     };
                 });
-
-
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
