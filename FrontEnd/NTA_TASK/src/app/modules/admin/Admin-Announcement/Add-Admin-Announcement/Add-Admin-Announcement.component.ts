@@ -38,7 +38,6 @@ implements OnInit {
     private alert: ToastrService,
     private LookUps: SharedLookUpsService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private Session: SessionService
   ) {
     super();
     this.Form = new FormGroup({

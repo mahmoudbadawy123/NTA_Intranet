@@ -15,4 +15,11 @@ namespace Interanet.Model.View
         public IEnumerable<string> Roles { get; set; }
 
     }
+
+
+    public class UserLookUpViewModel
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+    }
 }

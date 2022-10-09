@@ -183,10 +183,16 @@ namespace Interanet.Business.Classes
                 {
                     IsEmpty = true;
                 }
+
+                string[] JoinedTables = { "UserGroups", "ApplicationUser_InsertUser", "ApplicationUser_UpdateUser" };
+
+
                 var Data = _UnitOfWork.Storys.FindAll(
                   r => IsEmpty || r.Header.Contains(Page.Filter)
                                || r.ApplicationUser_InsertUser.FullName.Contains(Page.Filter)
-                               || r.ApplicationUser_UpdateUser.FullName.Contains(Page.Filter))
+                               || r.ApplicationUser_UpdateUser.FullName.Contains(Page.Filter)
+                               , JoinedTables
+                               )
                     .ToList().OrderByDescending(O => O.Id);
 
                 Page.TotalElements = Data.Count();
@@ -213,7 +219,9 @@ namespace Interanet.Business.Classes
             VmGetAdminStoryServiceResponse Response = new VmGetAdminStoryServiceResponse();
             try
             {
-                var Data = _UnitOfWork.Storys.FindAll(x => x.PublishDateTime <= DateTime.Now && (x.GroupId == 1 || x.GroupId == GroupId)).ToList().OrderByDescending(O => O.Id);
+                string[] JoinedTables = { "UserGroups", "ApplicationUser_InsertUser", "ApplicationUser_UpdateUser" };
+
+                var Data = _UnitOfWork.Storys.FindAll(x => x.PublishDateTime <= DateTime.Now && (x.GroupId == 1 || x.GroupId == GroupId) , JoinedTables).ToList().OrderByDescending(O => O.Id);
                 Page.TotalElements = Data.Count();
                 var skipped = Data.Take((Page.PageNumber + 1) * Page.Size).Skip((Page.PageNumber) * Page.Size).ToList();
                 Response.Data = skipped;

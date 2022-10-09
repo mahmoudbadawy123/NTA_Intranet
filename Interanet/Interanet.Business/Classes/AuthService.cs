@@ -1,4 +1,5 @@
 ﻿using Interanet.Business.Interfaces.Services;
+using Interanet.DataAccessLayer.Interfaces;
 using Interanet.Model.Data;
 using Interanet.Model.View;
 using Interanet.Model.View.Const;
@@ -21,12 +22,14 @@ namespace Interanet.Business.Classes
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly JWT _jwt;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IOptions<JWT> jwt)
+        public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IOptions<JWT> jwt, IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _jwt = jwt.Value;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<AuthModel> RegisterAsync(RegisterModel model)
@@ -97,7 +100,7 @@ namespace Interanet.Business.Classes
             authModel.ExpiresOn = jwtSecurityToken.ValidTo;
             authModel.Roles = rolesList.ToList();
             authModel.GroupId = user.GroupId;
-            authModel.GroupName = user.UserGroups?.Name;
+            authModel.GroupName = _unitOfWork.UserGroups.FirstOrDefault(g=>g.Id == authModel.GroupId)?.Name;
             authModel.UserType  =  rolesList.ToList().Any(x=>x.Contains(UserTypes.ADMIN)) ? (int)E_UserTypes.ADMIN : (int)E_UserTypes.USER;
             //update firstlogin value
             if (user.IsFirstlogin == false)

@@ -1,0 +1,58 @@
+label {
+    font-size: larger;
+    font-weight: bold;
+}
+.marginleft{
+    margin-left: 15px;
+}
+
+
+.Header {
+    height: 50px;
+    width: 100%;
+    background-color: rgb(33, 192, 139);
+}
+
+.widthBtn {
+    width: 130px;
+}
+
+.float-right {
+    float: right;
+}
+
+/* .Border {
+     border: 3px solid rgb(33, 192, 139); 
+} */
+
+
+.Note {
+    color: red;
+    background: yellow;
+}
+
+.mat-column-id , .mat-column-Edit , .mat-column-Delete , .mat-column-messageBody {
+    flex: 0 0 7.5%;
+}
+
+.mat-column-labelName{
+    flex: 0 0 15%; 
+}
+
+.mat-column-publishDateTime{
+    flex: 0 0 12.5%; 
+}
+
+.mat-column-insertUserName{
+    flex: 0 0 15%; 
+}
+
+.mat-column-updateUserName{
+    flex: 0 0 15%; 
+}
+
+.mat-column-updateUserDate{
+    flex: 0 0 12.5%; 
+}
+
+

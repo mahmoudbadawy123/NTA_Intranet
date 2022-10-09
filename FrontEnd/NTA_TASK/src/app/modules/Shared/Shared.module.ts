@@ -58,6 +58,9 @@ import { NgxMatMomentModule } from '@angular-material-components/moment-adapter'
 import { ConfirmDialogComponent } from './Shared-Components/confirm-dialog/confirm-dialog.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { AddAdminMeetingsComponent } from '../admin/Admin-Meetings/Add-Admin-Meetings/Add-Admin-Meetings.component';
+import { UpdateAdminMeetingsComponent } from '../admin/Admin-Meetings/Update-Admin-Meetings/Update-Admin-Meetings.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 
@@ -125,6 +128,7 @@ var Modules : any[] = [
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    NgMultiSelectDropDownModule.forRoot(),
 
   
  ]
@@ -137,6 +141,8 @@ let entryComponents: any[]= [
   PageNotFoundComponent,
   ContentHeaderComponent,
   ConfirmDialogComponent,
+  AddAdminMeetingsComponent,
+  UpdateAdminMeetingsComponent
 ]
  let Components : any[]= [
    ...entryComponents,

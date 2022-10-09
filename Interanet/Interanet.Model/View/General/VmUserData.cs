@@ -18,4 +18,12 @@ namespace Interanet.Model.View.General
         public string UserId { get; set; }
         public DateTime? EventDateTime { get; set; }
     }
+
+
+    public class VmMeetingData
+    {
+        public string UserId { get; set; }
+        public DateTime? PublishDateTime { get; set; }
+        public DateTime? MeatingDateTime { get; set; }
+    }
 }

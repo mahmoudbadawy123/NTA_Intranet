@@ -14,6 +14,8 @@ import { AddAdminStoryComponent } from './Admin-story/Add-Admin-Story/Add-Admin-
 import { UpdateAdminStoryComponent } from './Admin-story/Update-Admin-Story/Update-Admin-Story.component';
 import { UpdateAdminCalenderComponent } from './Admin-Calender/Update-Admin-Calender/Update-Admin-Calender.component';
 import { AddAdminCalenderComponent } from './Admin-Calender/Add-Admin-Calender/Add-Admin-Calender.component';
+import { AddAdminMagicToolsComponent } from './Admin-MagicTools/add-Admin-MagicTools/add-Admin-MagicTools.component';
+import { UpdateAdminMagicToolsComponent } from './Admin-MagicTools/Update-Admin-MagicTools/Update-Admin-MagicTools.component';
 
 
 
@@ -30,7 +32,9 @@ let EntryComponents : any[]= [
   AddAdminStoryComponent,
   UpdateAdminStoryComponent,
   AddAdminCalenderComponent,
-  UpdateAdminCalenderComponent
+  UpdateAdminCalenderComponent,
+  AddAdminMagicToolsComponent,
+  UpdateAdminMagicToolsComponent
 ]
 
 let Components : any[]= [

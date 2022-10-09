@@ -20,6 +20,11 @@ namespace Interanet.Model.Data
 
         public bool IsFirstlogin { get; set; } = false;
 
+        //#########################################################################################
+
+        public virtual ICollection<Meeting> Meetings { get; set; }
+        public virtual List<ApplicationUserMeeting> ApplicationUserMeetings { get; set; }
+
 
     }
 }

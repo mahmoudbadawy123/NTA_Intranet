@@ -1,3 +1,130 @@
-<p>
-  Admin-MagicTools works!
-</p>
+<div fxLayout="column"
+  class="p-2">
+  <div class="p-2">
+    <app-content-header [icon]="''"
+      [title]="' Magic Tool '"
+      [hideBreadcrumb]="false"
+      [hasBgImage]="false"
+      [class]="'pb-5'">
+    </app-content-header>
+
+    <mat-toolbar color="primary"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      class="px-2 user-toolbar">
+      <div fxLayout="row">
+        <button mat-icon-button
+          class="TableBtn"
+          (click)="showAdd()"
+          matTooltip=" add system ">
+          <mat-icon class="Cursor">add_box</mat-icon>
+        </button>
+        <button mat-icon-button
+          class="TableBtn"
+          (click)="showSearch = !showSearch"
+          matTooltip="search">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+      <form class="user-search"
+        [class.show]="showSearch">
+        <mat-form-field class="user-search-input">
+          <input matInput
+            (keyup)="applyFilter($event)"
+            placeholder='Search by system Name OR Created By OR Updated By ...'
+            [(ngModel)]="searchText"
+            name="search">
+        </mat-form-field>
+      </form>
+    </mat-toolbar>
+
+
+ 
+
+    <mat-table #table matSort (matSortChange)="onSort($event)" [dataSource]="row" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="id">
+          <!-- Serial   -->
+          Id
+        </mat-header-cell>
+
+        <mat-cell *matCellDef="let element"  data-label="id">
+           {{element.id}} </mat-cell>
+
+           <!-- <mat-cell *matCellDef="let i=index "
+           data-label="Serial"> {{i+1 + (page.pageNumber * page.size) }}  </mat-cell> -->
+      </ng-container>
+
+      <ng-container matColumnDef="systemName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="systemName"> system Name 
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="systemName"> {{element.systemName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="employeeName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="employeeName"> employee Name 
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="employeeName"> {{element.employeeName}} </mat-cell>
+      </ng-container>
+
+     
+
+      <ng-container matColumnDef="publishDateTime">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="publishDateTime"> publish Date  
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label=" publishDateTime"> {{element.publishDateTime | date:'dd/MM/yyyy hh:mm:ss'}} </mat-cell>
+      </ng-container>
+      
+
+      <ng-container matColumnDef="insertUserName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="insertUserName"> Created By
+        
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label=" insertUserName"> {{element.insertUserName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="updateUserName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="updateUserName"> Updated By 
+
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label=" updateUserName"> {{element.updateUserName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="updateUserDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="updateUserDate"> Last update 
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label=" updateUserDate"> {{element.updateUserDate | date:'dd/MM/yyyy hh:mm:ss'}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Edit">
+        <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+        <mat-cell *matCellDef="let element"
+          data-label="Edit"> <a (click)="showEdit(element)" class="Cursor"
+            matTooltip="Edit"> <i>
+              <mat-icon>edit</mat-icon></i></a>
+
+
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Delete">
+        <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+        <mat-cell *matCellDef="let element"
+          data-label="Delete"> <a (click)="Delete(element)" class="Cursor"
+            matTooltip="Delete"> <i>
+              <mat-icon>delete</mat-icon>
+
+            </i></a>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row    *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [length]="page.totalElements" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"
+      (page)="paginatorEvent = getServerData($event)">
+    </mat-paginator>
+
+
+  </div>
+
+</div>

@@ -150,6 +150,21 @@ namespace Interanet.DataAccessLayer.Migrations
                     b.ToTable("Users", "security");
                 });
 
+            modelBuilder.Entity("Interanet.Model.Data.ApplicationUserMeeting", b =>
+                {
+                    b.Property<int>("MeetingId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("MeetingId", "ApplicationUserId");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("ApplicationUserMeetings");
+                });
+
             modelBuilder.Entity("Interanet.Model.Data.CalenderEvents", b =>
                 {
                     b.Property<int>("Id")
@@ -195,6 +210,91 @@ namespace Interanet.DataAccessLayer.Migrations
                     b.HasIndex("UpdateUserId");
 
                     b.ToTable("CalenderEvents");
+                });
+
+            modelBuilder.Entity("Interanet.Model.Data.Meeting", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("InsertUserDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InsertUserId")
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("MeatingDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MeatingLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MeatingLocation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MeatingName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MeatingTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("PublishDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdateUserDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdateUserId")
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool?>("isScheduledPublish")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InsertUserId");
+
+                    b.HasIndex("MeatingTypeId");
+
+                    b.HasIndex("UpdateUserId");
+
+                    b.ToTable("Meetings");
+                });
+
+            modelBuilder.Entity("Interanet.Model.Data.MeetingTypes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("InsertUserDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("InsertUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateUserDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdateUserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MeetingTypes");
                 });
 
             modelBuilder.Entity("Interanet.Model.Data.Storys", b =>
@@ -245,6 +345,58 @@ namespace Interanet.DataAccessLayer.Migrations
                     b.HasIndex("UpdateUserId");
 
                     b.ToTable("Storys");
+                });
+
+            modelBuilder.Entity("Interanet.Model.Data.Systems", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("EmployeeUserId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("InsertUserDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InsertUserId")
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("PublishDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SystemName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateUserDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdateUserId")
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool?>("isScheduledPublish")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeUserId");
+
+                    b.HasIndex("InsertUserId");
+
+                    b.HasIndex("UpdateUserId");
+
+                    b.ToTable("Systems");
                 });
 
             modelBuilder.Entity("Interanet.Model.Data.UserGroups", b =>
@@ -442,6 +594,25 @@ namespace Interanet.DataAccessLayer.Migrations
                     b.Navigation("UserGroups");
                 });
 
+            modelBuilder.Entity("Interanet.Model.Data.ApplicationUserMeeting", b =>
+                {
+                    b.HasOne("Interanet.Model.Data.ApplicationUser", "ApplicationUser")
+                        .WithMany("ApplicationUserMeetings")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Interanet.Model.Data.Meeting", "Meeting")
+                        .WithMany("ApplicationUserMeetings")
+                        .HasForeignKey("MeetingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Meeting");
+                });
+
             modelBuilder.Entity("Interanet.Model.Data.CalenderEvents", b =>
                 {
                     b.HasOne("Interanet.Model.Data.UserGroups", "UserGroups")
@@ -463,6 +634,27 @@ namespace Interanet.DataAccessLayer.Migrations
                     b.Navigation("UserGroups");
                 });
 
+            modelBuilder.Entity("Interanet.Model.Data.Meeting", b =>
+                {
+                    b.HasOne("Interanet.Model.Data.ApplicationUser", "ApplicationUser_InsertUser")
+                        .WithMany()
+                        .HasForeignKey("InsertUserId");
+
+                    b.HasOne("Interanet.Model.Data.MeetingTypes", "MeetingTypes")
+                        .WithMany()
+                        .HasForeignKey("MeatingTypeId");
+
+                    b.HasOne("Interanet.Model.Data.ApplicationUser", "ApplicationUser_UpdateUser")
+                        .WithMany()
+                        .HasForeignKey("UpdateUserId");
+
+                    b.Navigation("ApplicationUser_InsertUser");
+
+                    b.Navigation("ApplicationUser_UpdateUser");
+
+                    b.Navigation("MeetingTypes");
+                });
+
             modelBuilder.Entity("Interanet.Model.Data.Storys", b =>
                 {
                     b.HasOne("Interanet.Model.Data.UserGroups", "UserGroups")
@@ -482,6 +674,29 @@ namespace Interanet.DataAccessLayer.Migrations
                     b.Navigation("ApplicationUser_UpdateUser");
 
                     b.Navigation("UserGroups");
+                });
+
+            modelBuilder.Entity("Interanet.Model.Data.Systems", b =>
+                {
+                    b.HasOne("Interanet.Model.Data.ApplicationUser", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Interanet.Model.Data.ApplicationUser", "ApplicationUser_InsertUser")
+                        .WithMany()
+                        .HasForeignKey("InsertUserId");
+
+                    b.HasOne("Interanet.Model.Data.ApplicationUser", "ApplicationUser_UpdateUser")
+                        .WithMany()
+                        .HasForeignKey("UpdateUserId");
+
+                    b.Navigation("ApplicationUser_InsertUser");
+
+                    b.Navigation("ApplicationUser_UpdateUser");
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -533,6 +748,16 @@ namespace Interanet.DataAccessLayer.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Interanet.Model.Data.ApplicationUser", b =>
+                {
+                    b.Navigation("ApplicationUserMeetings");
+                });
+
+            modelBuilder.Entity("Interanet.Model.Data.Meeting", b =>
+                {
+                    b.Navigation("ApplicationUserMeetings");
                 });
 #pragma warning restore 612, 618
         }

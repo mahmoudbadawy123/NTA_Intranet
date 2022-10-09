@@ -40,7 +40,7 @@ builder.Services.AddAutoMapper(startUp);
 //options.UseSqlServer(connectionString));
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-options.UseLazyLoadingProxies().UseSqlServer(connectionString));
+options.UseSqlServer(connectionString));
 
 //services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
@@ -51,6 +51,13 @@ builder.Services.AddScoped<IUserGroupsService, UserGroupsService>();
 builder.Services.AddScoped<IAnnouncementsService, AnnouncementsService>();
 builder.Services.AddScoped<IStorysService, StorysService>();
 builder.Services.AddScoped<ICalenderEventsService, CalenderEventsService>();
+builder.Services.AddScoped<IMeetingTypesService, MeetingTypesService>();
+builder.Services.AddScoped<IMeetingsService, MeetingsService>();
+builder.Services.AddScoped<ISystemsService, SystemsService>();
+
+
+
+
 
 // End  add Business Services here
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()

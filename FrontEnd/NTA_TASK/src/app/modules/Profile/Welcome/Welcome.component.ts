@@ -8,38 +8,30 @@ import { AuthenticationService } from '../../Shared/Shared-Services/Auth/Authent
 @Component({
   selector: 'app-Welcome',
   templateUrl: './Welcome.component.html',
-  styleUrls: ['./Welcome.component.css']
+  styleUrls: ['./Welcome.component.css'],
 })
 export class WelcomeComponent implements OnInit {
-
   constructor(
-    private router: Router ,
+    private router: Router,
     private authenticationService: AuthenticationService
-  ) { 
+  ) {}
 
-
-  }
-
-  User:any ;
-  fullname:any;
-  userType :any;
+  User: any;
+  fullname: any;
+  userType: any;
   ngOnInit() {
-this.User = this.authenticationService.userValue;
-console.log(this.User);
-this.fullname =  this.User?.fullname;
-this.userType = this.User?.userType;
+    this.User = this.authenticationService.userValue;
+    console.log(this.User);
+    this.fullname = this.User?.fullname;
+    this.userType = this.User?.userType;
   }
 
-  RedirectToUserHome()
-  {
-    if(this.userType == Role.Admin) {
-      this.router.navigate(["/Admin"])
+  RedirectToUserHome() {
+    if (this.userType == Role.Admin) {
+      this.router.navigate(['/Admin']);
+    } else if (this.userType == Role.User) {
+      this.router.navigate(['/Employee']);
     }
-    else if (this.userType == Role.User) {
-      this.router.navigate(["/Employee"])
-    }
-
   }
-
-
+  
 }

@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { BaseComponent } from 'src/app/modules/Shared/core/base.component';
 import { ApiService } from 'src/app/modules/Shared/Shared-Services/http/Api.service';
 import { SharedLookUpsService } from 'src/app/modules/Shared/Shared-Services/LookUps/Shared-Look-Ups.service';
-import { SessionService } from 'src/app/modules/Shared/Shared-Services/Session/session.service';
 import { LookUps } from 'src/app/ViewModel/LookUps';
 
 @Component({

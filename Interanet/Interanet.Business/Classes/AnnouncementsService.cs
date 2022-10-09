@@ -166,23 +166,23 @@ namespace Interanet.Business.Classes
             try
             {
                 // Eager Loading to Solve Problem of  navigation-property Return Null Value instead of Data 
-                //string[] JoinedTables = { "UserGroups", "ApplicationUser_InsertUserId", "ApplicationUser_UpdateUserId" };
+                string[] JoinedTables = { "UserGroups", "ApplicationUser_InsertUserId", "ApplicationUser_UpdateUserId" };
                 bool IsEmpty = false;
                 if (string.IsNullOrWhiteSpace(Page.Filter))
                 {
                     IsEmpty = true;
                 }
-                //var Data = _UnitOfWork.Announcements.FindAll(
-                //    r => IsEmpty || r.LabelName.Contains(Page.Filter)
-                //                 || r.ApplicationUser_InsertUserId.FullName.Contains(Page.Filter)
-                //                 || r.ApplicationUser_UpdateUserId.FullName.Contains(Page.Filter) 
-                //                 , JoinedTables).ToList().OrderByDescending(O=>O.Id);
-
                 var Data = _UnitOfWork.Announcements.FindAll(
-                  r => IsEmpty || r.LabelName.Contains(Page.Filter)
-                               || r.ApplicationUser_InsertUserId.FullName.Contains(Page.Filter)
-                               || r.ApplicationUser_UpdateUserId.FullName.Contains(Page.Filter))
-                    .ToList().OrderByDescending(O => O.Id);
+                    r => IsEmpty || r.LabelName.Contains(Page.Filter)
+                                 || r.ApplicationUser_InsertUserId.FullName.Contains(Page.Filter)
+                                 || r.ApplicationUser_UpdateUserId.FullName.Contains(Page.Filter)
+                                 , JoinedTables).ToList().OrderByDescending(O => O.Id);
+
+                //var Data = _UnitOfWork.Announcements.FindAll(
+                //  r => IsEmpty || r.LabelName.Contains(Page.Filter)
+                //               || r.ApplicationUser_InsertUserId.FullName.Contains(Page.Filter)
+                //               || r.ApplicationUser_UpdateUserId.FullName.Contains(Page.Filter))
+                //    .ToList().OrderByDescending(O => O.Id);
 
                 Page.TotalElements = Data.Count();
                 var skipped = Data.Take((Page.PageNumber + 1) * Page.Size).Skip((Page.PageNumber) * Page.Size).ToList();
@@ -209,11 +209,11 @@ namespace Interanet.Business.Classes
             try
             {
                 //// Eager Loading to Solve 
-                //string[] JoinedTables = { "UserGroups", "ApplicationUser_InsertUserId", "ApplicationUser_UpdateUserId" };
-                //var Data = _UnitOfWork.Announcements.FindAll(  x => x.PublishDateTime <= DateTime.Now && (x.GroupId == 1 || x.GroupId == GroupId) 
-                //, JoinedTables).ToList().OrderByDescending(O => O.Id) ;
+                string[] JoinedTables = { "UserGroups", "ApplicationUser_InsertUserId", "ApplicationUser_UpdateUserId" };
+                var Data = _UnitOfWork.Announcements.FindAll(x => x.PublishDateTime <= DateTime.Now && (x.GroupId == 1 || x.GroupId == GroupId)
+                , JoinedTables).ToList().OrderByDescending(O => O.Id);
 
-                var Data = _UnitOfWork.Announcements.FindAll(x => x.PublishDateTime <= DateTime.Now && (x.GroupId == 1 || x.GroupId == GroupId)).ToList().OrderByDescending(O => O.Id);
+                //var Data = _UnitOfWork.Announcements.FindAll(x => x.PublishDateTime <= DateTime.Now && (x.GroupId == 1 || x.GroupId == GroupId)).ToList().OrderByDescending(O => O.Id);
 
                 Page.TotalElements = Data.Count();
                 var skipped = Data.Take((Page.PageNumber + 1) * Page.Size).Skip((Page.PageNumber) * Page.Size).ToList();

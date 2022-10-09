@@ -1,3 +1,24 @@
-<p>
-  Employee-MagicTools works!
-</p>
+<div class="container ">
+
+  <div class="row">
+    <h1>  
+      Magic Tools
+    </h1>
+  </div>
+
+  <div class="row">
+      <mat-card *ngFor="let Obj of Data" class="example-card col-3 mx-auto">
+        <mat-card-title>{{Obj?.systemName}}</mat-card-title>
+        <mat-card-content>
+          <button class="My_Btn"
+          mat-raised-button
+          (click)="RedirectToSysten(Obj)">Redirect to System</button>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <span> Publisher is : {{Obj?.insertUserName}} </span> 
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+</div>
+

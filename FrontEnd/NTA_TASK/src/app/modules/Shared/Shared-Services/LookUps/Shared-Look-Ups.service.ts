@@ -12,4 +12,14 @@ export class SharedLookUpsService {
   Groups(): Observable<any> {
     return this.api.get('UserGroups/GetAll').pipe();
   }
+
+  MeetingTypes(): Observable<any> {
+    return this.api.get('MeetingTypes/GetAll').pipe();
+  }
+
+  UsersExceptMe(): Observable<any> {
+    return this.api.get('Users/GetAll').pipe();
+  }
+
+  
 }
