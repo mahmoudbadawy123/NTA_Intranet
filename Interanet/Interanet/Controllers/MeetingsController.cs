@@ -25,7 +25,7 @@ namespace Interanet.API.Controllers
         }
 
         //################################################### Add ######################################################
-        [Authorize(Roles = UserTypes.ADMIN)]
+        [Authorize(Roles = $"{UserTypes.USER},{UserTypes.ADMIN}")]
         [HttpPost("Add")]
         public async Task<IActionResult> Add( VmAddMeetingRequest model)
         {
@@ -50,7 +50,7 @@ namespace Interanet.API.Controllers
             }
         }
         //################################################### Update ######################################################
-        [Authorize(Roles = UserTypes.ADMIN)]
+        [Authorize(Roles = $"{UserTypes.USER},{UserTypes.ADMIN}")]
         [HttpPost("Update")]
         public async Task<IActionResult> Update([FromBody] VmUpdateMeetingRequest model)
         {
@@ -58,14 +58,14 @@ namespace Interanet.API.Controllers
             VmAddUpdateDeleteResponse Res = new VmAddUpdateDeleteResponse();
             try
             {
-                //if (!ModelState.IsValid)
-                //    return BadRequest(ModelState);
-                //UserData.UserId = this.User.Identity.GetUserId();
-                //UserData.PublishDateTime = Convert.ToDateTime(model.PublishDateTime).ToLocalTime();
-                //UserData.MeatingDateTime = Convert.ToDateTime(model.MeatingDateTime).ToLocalTime();
-                //Res = await _MeetingsService.Update(model, UserData);
-                //if (Res.IsDone == false)
-                //    return BadRequest(Res.Message);
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                UserData.UserId = this.User.Identity.GetUserId();
+                UserData.PublishDateTime = Convert.ToDateTime(model.PublishDateTime).ToLocalTime();
+                UserData.MeatingDateTime = Convert.ToDateTime(model.MeatingDateTime).ToLocalTime();
+                Res = await _MeetingsService.Update(model, UserData);
+                if (Res.IsDone == false)
+                    return BadRequest(Res.Message);
                 return Ok(Res);
             }
             catch (Exception ex)
@@ -78,7 +78,7 @@ namespace Interanet.API.Controllers
 
 
         //################################################### Delete Single Item ######################################################
-        [Authorize(Roles = UserTypes.ADMIN)]
+        [Authorize(Roles = $"{UserTypes.USER},{UserTypes.ADMIN}")]
         [HttpPost("Delete")]
         public async Task<IActionResult> Update([FromBody] VmDeleteMeetingRequest model)
         {
@@ -112,8 +112,8 @@ namespace Interanet.API.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
                 var Data = await _MeetingsService.GetAllForAdmin();
-                //var DataMapped = _mapper.Map<VmMeetingResponse>(Data);
-                return Ok(Data);
+                var DataMapped = _mapper.Map<List<VmMeetingResponse>>(Data);
+                return Ok(DataMapped);
             }
             catch (Exception ex)
             {
@@ -125,15 +125,37 @@ namespace Interanet.API.Controllers
         //################################################### GetAll For Employee ######################################################
         [Authorize(Roles = UserTypes.USER)]
         [HttpGet("GetAllForEmp")]
-        public async Task<IActionResult> GetAllForEmployeesByGroup()
+        public async Task<IActionResult> GetAllForEmp()
         {
             try
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                var Data = await _MeetingsService.GetAllForEmployeesByGroup(this.User.Identity.GetUserId());
-                var DataMapped = _mapper.Map<VmGetAdminMeetingResponse>(Data);
+                var Data = await _MeetingsService.GetAllForEmp(this.User.Identity.GetUserId());
+                var DataMapped = _mapper.Map<List<VmMeetingResponse>>(Data);
+
                 return Ok(DataMapped);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.InnerException);
+            }
+        }
+
+        [Authorize(Roles = $"{UserTypes.USER},{UserTypes.ADMIN}")]
+        [HttpGet("GetAllMeetingsUsers/{MeetingId}")]
+        public async Task<IActionResult> GetAllMeetingsUsers(int MeetingId)
+        {
+            try
+            {
+                string[] JoinedTables = { "ApplicationUser" };
+                var Data = _UnitOfWork.ApplicationUserMeetings.FindAll(x => x.MeetingId == MeetingId, JoinedTables).Select(x=>new
+                {
+                    id=x.ApplicationUser.Id,
+                    name = x.ApplicationUser.FullName
+                }).ToList();
+
+                return Ok(Data);
             }
             catch (Exception ex)
             {

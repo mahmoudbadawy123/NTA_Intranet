@@ -33,7 +33,7 @@ namespace Interanet.DataAccessLayer.Class
             MeetingTypes = new BaseRepository<MeetingTypes>(_context);
             Meetings = new BaseRepository<Meeting>(_context);
             Systems = new BaseRepository<Systems>(_context);
-            
+            ApplicationUserMeetings = new BaseRepository<ApplicationUserMeeting>(_context);
         }
 
         public int Complete()

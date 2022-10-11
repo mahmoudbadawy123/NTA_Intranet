@@ -194,8 +194,32 @@ namespace Interanet.API.AutoMapperProfiles
                     dest => dest.PublishDateTime,
                     opt => opt.MapFrom(src => $"{src.PublishDateTime.Value.ToUniversalTime().ToLocalTime()}")
                     )
+
+                .ForMember(
+                    dest => dest.PublishDateTime,
+                    opt => opt.MapFrom(src => $"{src.PublishDateTime.Value.ToUniversalTime().ToLocalTime()}")
+                    )
+
+
+                .ForMember(
+                    dest => dest.ApplicationUserMeetings,
+                    opt => opt.MapFrom(src => src.ApplicationUserMeetings)
+                    )
+
                ;
 
+
+
+            CreateMap<ApplicationUserMeeting, VmApplicationUserMeeting>()
+            .ForMember(
+                dest => dest.MeetingId,
+                opt => opt.MapFrom(src => src.MeetingId)
+                )
+             .ForMember(
+                dest => dest.ApplicationUserId,
+                opt => opt.MapFrom(src => src.ApplicationUserId)
+                )
+            ;
 
             CreateMap<ApplicationUser, VmRecieverUserRequest>().ForMember(
                     dest => dest.Id,

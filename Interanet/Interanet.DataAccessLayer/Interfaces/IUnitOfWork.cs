@@ -18,7 +18,8 @@ namespace Interanet.DataAccessLayer.Interfaces
         IBaseRepository<Meeting> Meetings { get; }
         IBaseRepository<Systems> Systems { get; }
         IBaseRepository<ApplicationUserMeeting> ApplicationUserMeetings { get; }
-        
+
+        //DbRawSqlQuery<T> ExecQuery<T>(string query);
         int Complete();
     }
 }

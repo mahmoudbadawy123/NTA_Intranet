@@ -21,5 +21,9 @@ export class SharedLookUpsService {
     return this.api.get('Users/GetAll').pipe();
   }
 
-  
+  GetAllMeetingsUsers(MeetingId:any): Observable<any> {
+    debugger;
+    return this.api.get('Meetings/GetAllMeetingsUsers/'+ MeetingId).pipe();
+  }
+
 }

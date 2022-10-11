@@ -1,3 +1,155 @@
-<p>
-  Update-Admin-Meetings works!
-</p>
+<div dir="ltr" class="w-100">
+  <h2 class="text-center h2  HeaderOfPobUps">
+    Add New Event
+  </h2>
+
+  <form [formGroup]="Form" autocomplete="off">
+    <div class="container">
+      <div class="row">
+
+      
+        <div class="col-6">
+          <mat-form-field class="w-100">
+            <input placeholder="Meating Name"
+              style="width: 100%"
+              matInput
+              formControlName="meatingName"
+              required>
+          </mat-form-field>
+          <small *ngIf="form['meatingName'].hasError('required') && 
+                form['meatingName'].touched"
+            class="form-text text-danger">
+               please Enter Meating Name </small>
+        </div>
+
+        <div class="col-12">
+          <mat-form-field class="w-100">
+            <input placeholder="  Description "
+              style="width: 100%"
+              matInput
+              formControlName="description"
+              required>
+          </mat-form-field>
+          <small *ngIf="form['description'].hasError('required') && 
+                form['description'].touched"
+            class="form-text text-danger">
+               please Enter  Description</small>
+        </div>
+
+        <div class=" col-12">
+          <mat-form-field class="d-block col-6 ">
+            <mat-select placeholder=" Meating Type  "
+              formControlName="meatingTypeId">
+              <mat-option 
+              [value]="-1">
+              -- Choose -- 
+            </mat-option>
+              <mat-option *ngFor="let c of MeetingTypes"
+                [value]="c.id">
+                {{ c.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class=" col-12">
+          <!-- <mat-form-field class="d-block col-6 ">
+            <mat-select (selectionChange)="OnselectReciver()" placeholder=" Meating Participiants" 
+            multiple  formControlName="recieverUserIds">
+              <mat-option 
+              [value]="-1">
+              -- Choose -- 
+            </mat-option>
+              <mat-option *ngFor="let c of Users"
+                [value]="c.id">
+                {{ c.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+
+          <ng-multiselect-dropdown
+  [placeholder]="'Meating Participiants'"
+  [settings]="dropdownSettings"
+  [data]="Users"
+  formControlName ="recieverUserIds"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)"
+>
+</ng-multiselect-dropdown>
+
+        </div>
+
+        <div class="col-9">
+          <mat-form-field class="w-100">
+            <input placeholder="Meating Location"
+              style="width: 100%"
+              matInput
+              formControlName="meatingLocation"
+              required>
+          </mat-form-field>
+        </div>
+        <div class="col-9">
+          <mat-form-field class="w-100">
+            <input placeholder="Meating Link"
+              style="width: 100%"
+              matInput
+              formControlName="meatingLink"
+              required>
+          </mat-form-field>
+        </div>
+
+       
+          <!-- 
+      : new FormControl(this.today),
+      isScheduledPublish: new FormControl(false),
+      publishDateTime: new FormControl(this.today), -->
+      
+
+        <div class=" col-12">
+          <mat-form-field>
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a Meating DateTime"
+            formControlName="meatingDateTime"
+              [min]="minDate" [max]="maxDate" [disabled]="disabled">
+            <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+              [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi"
+              [color]="color" [enableMeridian]="enableMeridian">
+            </ngx-mat-datetime-picker>
+          </mat-form-field>
+        </div>
+
+
+        <div class=" col-12">
+          
+          <mat-checkbox class="col-2" formControlName="isScheduledPublish" 
+          (change)=" ischecked=!ischecked; Oncheck() ;" > Scheduled Publish</mat-checkbox>
+          
+          <mat-form-field *ngIf="ischecked">
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date"
+            formControlName="publishDateTime"
+              [min]="minDate" [max]="maxDate" [disabled]="disabled">
+            <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+              [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi"
+              [color]="color" [enableMeridian]="enableMeridian">
+            </ngx-mat-datetime-picker>
+          </mat-form-field>
+
+        </div>
+
+      </div>
+      <div class="row">
+        <mat-dialog-actions>
+          <button class="My_Btn mt-3 mx-auto col-lg-3 col-md-3 col-sm-4 col-xs-12  "
+            mat-raised-button
+            [disabled]="Form.invalid"
+            (click)="okClick()">Save</button>
+          <button class="My_Btn mt-3 mx-auto col-lg-3 col-md-3 col-sm-4 col-xs-12  "
+            mat-raised-button
+            (click)="cancel()">Cancel</button>
+        </mat-dialog-actions>
+      </div>
+  </div>
+  </form>
+
+</div>

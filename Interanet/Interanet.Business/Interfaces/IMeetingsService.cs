@@ -15,6 +15,6 @@ namespace Interanet.Business.Interfaces
         Task<VmAddUpdateDeleteResponse> Update(VmUpdateMeetingRequest Request, VmMeetingData UserData);
         Task<VmAddUpdateDeleteResponse> Delete(VmDeleteMeetingRequest Request);
         Task<List<Meeting>> GetAllForAdmin();
-        Task<VmGetAdminMeetingServiceResponse> GetAllForEmployeesByGroup(string UserId);
+        Task<List<Meeting>> GetAllForEmp(string UserId);
     }
 }

@@ -17,7 +17,9 @@ namespace Interanet.Model.View.Meetings
         public string MeatingLink { get; set; }
         public DateTime? MeatingDateTime { get; set; } = DateTime.UtcNow.ToLocalTime();
         [StringLength(450)]
-        public ICollection<VmRecieverUserRequest> RecieverUserIds { get; set; }
+        //public ICollection<VmRecieverUserRequest> RecieverUserIds { get; set; }
+        public  List<VmApplicationUserMeeting> ApplicationUserMeetings { get; set; }
+
         public int? MeatingTypeId { get; set; }
         public bool? isScheduledPublish { get; set; } = false;
         public DateTime? PublishDateTime { get; set; } = DateTime.UtcNow.ToLocalTime();
@@ -51,7 +53,12 @@ namespace Interanet.Model.View.Meetings
 
 
 
+    public class VmApplicationUserMeeting
+    {
+        public int MeetingId { get; set; }
+        public string ApplicationUserId { get; set; }
 
+    }
 
 
 
