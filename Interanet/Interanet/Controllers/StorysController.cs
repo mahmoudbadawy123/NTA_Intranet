@@ -36,7 +36,7 @@ namespace Interanet.API.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var Data = _mapper.Map<Storys>(model);
+            var Data = _mapper.Map<Story>(model);
             UserData.UserId = this.User.Identity.GetUserId();
             UserData.PublishDateTime = Convert.ToDateTime(model.PublishDateTime).ToLocalTime();
             Res = await _StorysService.Add(Data, UserData);

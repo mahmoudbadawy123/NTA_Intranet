@@ -2,21 +2,18 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { AddAdminMeetingsComponent } from 'src/app/modules/admin/Admin-Meetings/Add-Admin-Meetings/Add-Admin-Meetings.component';
 import { BaseComponent } from 'src/app/modules/Shared/core/base.component';
 import { ApiService } from 'src/app/modules/Shared/Shared-Services/http/Api.service';
 import { SharedLookUpsService } from 'src/app/modules/Shared/Shared-Services/LookUps/Shared-Look-Ups.service';
 import { LookUps } from 'src/app/ViewModel/LookUps';
-import { AddAdminMeetingsComponent } from '../Add-Admin-Meetings/Add-Admin-Meetings.component';
 
 @Component({
-  selector: 'app-Update-Admin-Meetings',
-  templateUrl: './Update-Admin-Meetings.component.html',
-  styleUrls: ['./Update-Admin-Meetings.component.css']
+  selector: 'app-Show-Meetings-info',
+  templateUrl: './Show-Meetings-info.component.html',
+  styleUrls: ['./Show-Meetings-info.component.css']
 })
-
-
-
-export class UpdateAdminMeetingsComponent extends BaseComponent
+export class ShowMeetingsInfoComponent extends BaseComponent
 implements OnInit {
   Form: FormGroup;
   today = new Date();
@@ -25,7 +22,7 @@ implements OnInit {
   
   ControllerRoute:string = "Meetings";
   constructor(
-    public dialogRef: MatDialogRef<UpdateAdminMeetingsComponent>,
+    public dialogRef: MatDialogRef<ShowMeetingsInfoComponent>,
     private api: ApiService,
     private alert: ToastrService,
     private LookUps: SharedLookUpsService,
@@ -37,7 +34,7 @@ implements OnInit {
   
 
     this.Form = new FormGroup({
-      id: new FormControl(data?.id ,[Validators.required]),
+      // id: new FormControl(data?.id ,[Validators.required]),
       meatingName: new FormControl(data?.meatingName, [Validators.required]),
       description: new FormControl(data?.description, [Validators.required]),
       meatingLocation: new FormControl(data?.meatingLocation),
@@ -51,6 +48,8 @@ implements OnInit {
 
     this.GetMeetingTypes();
     this.GetUsersExceptMe();
+
+    this.Form.disable();
     // this.dropdownList = [
     //   { item_id: 1, item_text: 'Mumbai' },
     //   { item_id: 2, item_text: 'Bangaluru' },
@@ -67,7 +66,7 @@ implements OnInit {
       textField: 'name',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
-      allowSearchFilter: true
+      allowSearchFilter: false
     };
 
   }

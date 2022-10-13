@@ -9,6 +9,6 @@ namespace Interanet.Business.Interfaces
 {
     public interface IMeetingTypesService
     {
-        Task<IEnumerable<MeetingTypes>> GetAllMeetingTypes();
+        Task<IEnumerable<MeetingType>> GetAllMeetingTypes();
     }
 }

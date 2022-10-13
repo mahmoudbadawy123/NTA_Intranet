@@ -12,7 +12,7 @@ namespace Interanet.Business.Interfaces
 {
     public interface IAnnouncementsService
     {
-         Task<VmAddUpdateDeleteResponse> Add(Announcements Request, VmUserData UserData);
+         Task<VmAddUpdateDeleteResponse> Add(Announcement Request, VmUserData UserData);
          Task<VmAddUpdateDeleteResponse> Update(VmUpdateAnnouncementRequest Request, VmUserData UserData);
          Task<VmAddUpdateDeleteResponse> Delete(VmDeleteAnnouncementRequest Request);
          Task<VmGetAdminAnnouncementServiceResponse> GetAllForAdmin(Page Page);

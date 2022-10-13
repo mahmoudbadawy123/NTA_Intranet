@@ -18,7 +18,7 @@ namespace Interanet.Business.Classes
         {
             _unitOfWork = unitOfWork;
         }
-        public Task<IEnumerable<MeetingTypes>> GetAllMeetingTypes()
+        public Task<IEnumerable<MeetingType>> GetAllMeetingTypes()
         {
             return _unitOfWork.MeetingTypes.GetAllAsync();
 

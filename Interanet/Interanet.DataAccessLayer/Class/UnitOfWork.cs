@@ -12,13 +12,12 @@ namespace Interanet.DataAccessLayer.Class
     {
         private readonly ApplicationDbContext _context;
         public IBaseRepository<ApplicationUser> ApplicationUser { get; private set; }
-        public IBaseRepository<UserGroups> UserGroups { get; private set; }
-        public IBaseRepository<Announcements> Announcements { get; private set; }
-        public IBaseRepository<Storys> Storys { get; private set; }
-        public IBaseRepository<CalenderEvents> CalenderEvents { get; private set; }
-        public IBaseRepository<MeetingTypes> MeetingTypes { get; private set; }
+        public IBaseRepository<UserGroup> UserGroups { get; private set; }
+        public IBaseRepository<Announcement> Announcements { get; private set; }
+        public IBaseRepository<Story> Storys { get; private set; }
+        public IBaseRepository<CalenderEvent> CalenderEvents { get; private set; }
+        public IBaseRepository<MeetingType> MeetingTypes { get; private set; }
         public IBaseRepository<Meeting> Meetings { get; private set; }
-        public IBaseRepository<Systems> Systems { get; private set; }
         public IBaseRepository<ApplicationUserMeeting> ApplicationUserMeetings { get; private set; }
 
         
@@ -26,13 +25,12 @@ namespace Interanet.DataAccessLayer.Class
         {
             _context = context;
             ApplicationUser = new BaseRepository<ApplicationUser>(_context);
-            UserGroups = new BaseRepository<UserGroups>(_context);
-            Announcements = new BaseRepository<Announcements>(_context);
-            Storys = new BaseRepository<Storys>(_context);
-            CalenderEvents = new BaseRepository<CalenderEvents>(_context);
-            MeetingTypes = new BaseRepository<MeetingTypes>(_context);
+            UserGroups = new BaseRepository<UserGroup>(_context);
+            Announcements = new BaseRepository<Announcement>(_context);
+            Storys = new BaseRepository<Story>(_context);
+            CalenderEvents = new BaseRepository<CalenderEvent>(_context);
+            MeetingTypes = new BaseRepository<MeetingType>(_context);
             Meetings = new BaseRepository<Meeting>(_context);
-            Systems = new BaseRepository<Systems>(_context);
             ApplicationUserMeetings = new BaseRepository<ApplicationUserMeeting>(_context);
         }
 

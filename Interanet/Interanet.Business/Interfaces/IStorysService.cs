@@ -12,7 +12,7 @@ namespace Interanet.Business.Interfaces
 {
     public interface IStorysService
     {
-        Task<VmAddUpdateDeleteResponse> Add(Storys Request, VmUserData UserData);
+        Task<VmAddUpdateDeleteResponse> Add(Story Request, VmUserData UserData);
         Task<VmAddUpdateDeleteResponse> Update(VmUpdateStoryRequest Request, VmUserData UserData);
         Task<VmAddUpdateDeleteResponse> Delete(VmDeleteStoryRequest Request);
         Task<VmGetAdminStoryServiceResponse> GetAllForAdmin(Page Page);

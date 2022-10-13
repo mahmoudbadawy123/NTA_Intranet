@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Interanet.Model.Data
 {
-    public class UserGroups : IEntityBase
+    public class UserGroup : IEntityBase
     {
         [Key]
         public int Id { get; set; }

@@ -19,7 +19,7 @@ namespace Interanet.Model.View.Calender
 
     public class VmGetAdminCalenderEventServiceResponse
     {
-        public List<CalenderEvents> Data { get; set; }
+        public List<CalenderEvent> Data { get; set; }
 
     }
 

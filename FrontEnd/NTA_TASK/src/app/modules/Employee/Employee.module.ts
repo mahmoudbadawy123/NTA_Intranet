@@ -9,6 +9,7 @@ import { EmployeeMeetingsComponent } from './Employee-Meetings/Employee-Meetings
 import { EmployeeStoryComponent } from './Employee-story/Employee-story.component';
 import { EmployeeRoutingModule } from './Employee.routing';
 import { ShowDataCalenderComponent } from './Employee-Calender/Show-Data-Calender/Show-Data-Calender.component';
+import { ShowMeetingsInfoComponent } from './Employee-Meetings/Show-Meetings-info/Show-Meetings-info.component';
 
 let Modules : any[]= [
   CommonModule,
@@ -19,6 +20,7 @@ let Modules : any[]= [
 
 let EntryComponents : any[]= [
   ShowDataCalenderComponent,
+  ShowMeetingsInfoComponent,
 ]
 
 let Components : any[]= [

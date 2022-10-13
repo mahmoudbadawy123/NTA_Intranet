@@ -22,7 +22,7 @@ namespace Interanet.Business.Classes
         }
 
 
-        public async Task<VmAddUpdateDeleteResponse> Add(CalenderEvents Request, VmEventUserData UserData)
+        public async Task<VmAddUpdateDeleteResponse> Add(CalenderEvent Request, VmEventUserData UserData)
         {
             VmAddUpdateDeleteResponse Response = new VmAddUpdateDeleteResponse();
             try
@@ -76,7 +76,7 @@ namespace Interanet.Business.Classes
                     return Response;
                 }
 
-                CalenderEvents Data = _UnitOfWork.CalenderEvents.GetByIdAsync(Request.Id).Result;
+                CalenderEvent Data = _UnitOfWork.CalenderEvents.GetByIdAsync(Request.Id).Result;
                 if (Data is not null)
                 {
 
@@ -123,7 +123,7 @@ namespace Interanet.Business.Classes
             VmAddUpdateDeleteResponse Response = new VmAddUpdateDeleteResponse();
             try
             {
-                CalenderEvents Data = _UnitOfWork.CalenderEvents.GetByIdAsync(Request.Id).Result;
+                CalenderEvent Data = _UnitOfWork.CalenderEvents.GetByIdAsync(Request.Id).Result;
                 if (Data is not null)
                 {
                     _UnitOfWork.CalenderEvents.Delete(Data);

@@ -1,5 +1,4 @@
-﻿using Interanet.Model.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,23 +8,21 @@ using System.Threading.Tasks;
 
 namespace Interanet.Model.Data
 {
-    public class Announcements 
+    public class CalenderEvent
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        public string LabelName { get; set; }
+        public string EventName { get; set; }
 
         [Required]
-        public string MessageBody { get; set; }
+        public string Description { get; set; }
 
         public int? GroupId { get; set; }
 
         [ForeignKey("GroupId")]
-        public virtual UserGroups UserGroups { get; set; }
-
-        public bool? isScheduledPublish { get; set; } = false;
-        public DateTime? PublishDateTime { get; set; } = DateTime.UtcNow.ToLocalTime();
+        public virtual UserGroup UserGroups { get; set; }
+        public DateTime? EventDateTime { get; set; } = DateTime.UtcNow.ToLocalTime();
         public DateTime? InsertUserDate { get; set; }
         public DateTime? UpdateUserDate { get; set; }
         [StringLength(450)]
@@ -34,9 +31,8 @@ namespace Interanet.Model.Data
         public string? UpdateUserId { get; set; }
 
         [ForeignKey("InsertUserId")]
-        public virtual ApplicationUser ApplicationUser_InsertUserId { get; set; }
+        public virtual ApplicationUser ApplicationUser_InsertUser { get; set; }
         [ForeignKey("UpdateUserId")]
-        public virtual ApplicationUser ApplicationUser_UpdateUserId { get; set; }
-
+        public virtual ApplicationUser ApplicationUser_UpdateUser { get; set; }
     }
 }

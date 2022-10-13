@@ -20,7 +20,7 @@ namespace Interanet.Model.View.Story
 
     public class VmGetAdminStoryServiceResponse
     {
-        public List<Storys> Data { get; set; }
+        public List<Data.Story> Data { get; set; }
         public Page Page { get; set; }
 
     }

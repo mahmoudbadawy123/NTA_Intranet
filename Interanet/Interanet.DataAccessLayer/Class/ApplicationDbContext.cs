@@ -19,13 +19,12 @@ namespace Interanet.DataAccessLayer.Class
         {
         }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
-        public DbSet<UserGroups> UserGroups { get; set; }
-        public DbSet<Announcements> Announcements { get; set; }
-        public DbSet<Storys> Storys { get; set; }
-        public DbSet<CalenderEvents> CalenderEvents { get; set; }
-        public DbSet<MeetingTypes> MeetingTypes { get; set; }
+        public DbSet<UserGroup> UserGroups { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<Story> Storys { get; set; }
+        public DbSet<CalenderEvent> CalenderEvents { get; set; }
+        public DbSet<MeetingType> MeetingTypes { get; set; }
         public DbSet<Meeting> Meetings { get; set; }
-        public DbSet<Systems> Systems { get; set; }
         public DbSet<ApplicationUserMeeting> ApplicationUserMeetings { get; set; }
 
 

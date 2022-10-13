@@ -1,6 +1,6 @@
 <div dir="ltr" class="w-100">
   <h2 class="text-center h2  HeaderOfPobUps">
-    Edit Event
+     Event Info
   </h2>
 
   <form [formGroup]="Form" autocomplete="off">
@@ -74,6 +74,7 @@
   formControlName ="recieverUserIds"
   (onSelect)="onItemSelect($event)"
   (onSelectAll)="onSelectAll($event)"
+  [disabled]="true"
 >
 </ng-multiselect-dropdown>
 
@@ -138,17 +139,7 @@
         </div>
 
       </div>
-      <div class="row">
-        <mat-dialog-actions>
-          <button class="My_Btn mt-3 mx-auto col-lg-3 col-md-3 col-sm-4 col-xs-12  "
-            mat-raised-button
-            [disabled]="Form.invalid"
-            (click)="okClick()">Save</button>
-          <button class="My_Btn mt-3 mx-auto col-lg-3 col-md-3 col-sm-4 col-xs-12  "
-            mat-raised-button
-            (click)="cancel()">Cancel</button>
-        </mat-dialog-actions>
-      </div>
+ 
   </div>
   </form>
 

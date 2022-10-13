@@ -16,7 +16,7 @@ namespace Interanet.Model.Data
         public int? GroupId { get; set; }
 
         [ForeignKey("GroupId")]
-        public virtual UserGroups UserGroups { get; set; }
+        public virtual UserGroup UserGroups { get; set; }
 
         public bool IsFirstlogin { get; set; } = false;
 

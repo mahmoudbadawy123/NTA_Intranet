@@ -129,12 +129,14 @@ namespace Interanet.API.Controllers
         {
             try
             {
+
+                var CurrentUserId = this.User.Identity.GetUserId();
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
                 var Data = await _MeetingsService.GetAllForEmp(this.User.Identity.GetUserId());
                 var DataMapped = _mapper.Map<List<VmMeetingResponse>>(Data);
-
-                return Ok(DataMapped);
+                
+                return Ok(new { CurrentUser =CurrentUserId,Data= DataMapped});
             }
             catch (Exception ex)
             {

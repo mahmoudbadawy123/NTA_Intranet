@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Interanet.DataAccessLayer.Migrations
 {
-    public partial class start_1 : Migration
+    public partial class Intial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -273,46 +273,6 @@ namespace Interanet.DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Systems",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SystemName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Link = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmployeeUserId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    isScheduledPublish = table.Column<bool>(type: "bit", nullable: true),
-                    PublishDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    InsertUserDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdateUserDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    InsertUserId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    UpdateUserId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Systems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Systems_Users_EmployeeUserId",
-                        column: x => x.EmployeeUserId,
-                        principalSchema: "security",
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Systems_Users_InsertUserId",
-                        column: x => x.InsertUserId,
-                        principalSchema: "security",
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Systems_Users_UpdateUserId",
-                        column: x => x.UpdateUserId,
-                        principalSchema: "security",
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UserClaims",
                 schema: "security",
                 columns: table => new
@@ -511,21 +471,6 @@ namespace Interanet.DataAccessLayer.Migrations
                 column: "UpdateUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Systems_EmployeeUserId",
-                table: "Systems",
-                column: "EmployeeUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Systems_InsertUserId",
-                table: "Systems",
-                column: "InsertUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Systems_UpdateUserId",
-                table: "Systems",
-                column: "UpdateUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_UserClaims_UserId",
                 schema: "security",
                 table: "UserClaims",
@@ -581,9 +526,6 @@ namespace Interanet.DataAccessLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Storys");
-
-            migrationBuilder.DropTable(
-                name: "Systems");
 
             migrationBuilder.DropTable(
                 name: "UserClaims",

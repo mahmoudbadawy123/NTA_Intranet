@@ -11,7 +11,7 @@ namespace Interanet.Business.Interfaces
 {
     public interface ICalenderEventsService
     {
-        Task<VmAddUpdateDeleteResponse> Add(CalenderEvents Request, VmEventUserData UserData);
+        Task<VmAddUpdateDeleteResponse> Add(CalenderEvent Request, VmEventUserData UserData);
         Task<VmAddUpdateDeleteResponse> Update(VmUpdateCalenderEventRequest Request, VmEventUserData UserData);
         Task<VmAddUpdateDeleteResponse> Delete(VmDeleteCalenderEventRequest Request);
         Task<VmGetAdminCalenderEventServiceResponse> GetAllForAdmin();

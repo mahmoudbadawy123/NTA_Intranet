@@ -35,7 +35,7 @@ namespace Interanet.API.Controllers
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                var Data = _mapper.Map<CalenderEvents>(model);
+                var Data = _mapper.Map<CalenderEvent>(model);
                 UserData.UserId = this.User.Identity.GetUserId();
                 UserData.EventDateTime = Convert.ToDateTime(model.EventDateTime).ToLocalTime();
                 Res = await _CalenderEventsService.Add(Data, UserData);

@@ -23,7 +23,7 @@ namespace Interanet.Model.Data
         public DateTime? MeatingDateTime { get; set; } = DateTime.UtcNow.ToLocalTime();
         public int? MeatingTypeId { get; set; }
         [ForeignKey("MeatingTypeId")]
-        public virtual MeetingTypes MeetingTypes { get; set; }
+        public virtual MeetingType MeetingTypes { get; set; }
         public bool? isScheduledPublish { get; set; } = false;
         public DateTime? PublishDateTime { get; set; } = DateTime.UtcNow.ToLocalTime();
         public DateTime? InsertUserDate { get; set; }

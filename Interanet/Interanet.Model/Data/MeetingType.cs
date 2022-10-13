@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Interanet.Model.Data
 {
-    public class MeetingTypes
+    public class MeetingType
     {
         [Key]
         public int Id { get; set; }

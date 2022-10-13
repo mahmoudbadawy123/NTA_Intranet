@@ -27,7 +27,7 @@ namespace Interanet.API.Controllers
         {
             try
             {
-                var Data = _unitOfWork.ApplicationUser.FindAllAsync(x=>x.Id != this.User.Identity.GetUserId()).Result;
+                var Data = _unitOfWork.ApplicationUser.FindAllAsync(x=>x.Id != this.User.Identity.GetUserId() && x.GroupId != null).Result;
                 var DataMapped = _mapper.Map<List<UserLookUpViewModel>>(Data);
                 return Ok(DataMapped);
             }

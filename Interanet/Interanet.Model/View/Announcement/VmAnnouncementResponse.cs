@@ -20,7 +20,7 @@ namespace Interanet.Model.View.Announcement
 
     public class VmGetAdminAnnouncementServiceResponse
     {
-        public List<Announcements> Data { get; set; }
+        public List<Data.Announcement> Data { get; set; }
         public Page Page { get; set; }
 
     }

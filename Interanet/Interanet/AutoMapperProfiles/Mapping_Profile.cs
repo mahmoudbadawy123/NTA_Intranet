@@ -6,7 +6,6 @@ using Interanet.Model.View.Calender;
 using Interanet.Model.View.LookUps;
 using Interanet.Model.View.Meetings;
 using Interanet.Model.View.Story;
-using Interanet.Model.View.System;
 using Microsoft.AspNetCore.Identity;
 
 namespace Interanet.API.AutoMapperProfiles
@@ -47,7 +46,7 @@ namespace Interanet.API.AutoMapperProfiles
              );
 
             //############################################## Start Announcements ################################################
-            CreateMap<Announcements, VmAnnouncementResponse>()
+            CreateMap<Announcement, VmAnnouncementResponse>()
                .ForMember(
                     dest => dest.InsertUserName,
                     opt => opt.MapFrom(src => $"{src.ApplicationUser_InsertUserId.FullName}")
@@ -67,7 +66,7 @@ namespace Interanet.API.AutoMapperProfiles
 
 
 
-            CreateMap<VmAddAnnouncementRequest, Announcements>().AfterMap((_, dest) =>
+            CreateMap<VmAddAnnouncementRequest, Announcement>().AfterMap((_, dest) =>
                 {
                     dest.InsertUserDate = DateTime.UtcNow.ToLocalTime();
                 });
@@ -82,7 +81,7 @@ namespace Interanet.API.AutoMapperProfiles
                 );
 
             //############################################## Start UserGroups ################################################
-            CreateMap<UserGroups, VmGroups>().ForMember(
+            CreateMap<UserGroup, VmGroups>().ForMember(
                     dest => dest.Id,
                     opt => opt.MapFrom(src => $"{src.Id}")
                 ).ForMember(
@@ -91,7 +90,7 @@ namespace Interanet.API.AutoMapperProfiles
                 );
             //############################################## Start  Stories ################################################
 
-            CreateMap<Storys, VmStoryResponse>()
+            CreateMap<Story, VmStoryResponse>()
                .ForMember(
                     dest => dest.InsertUserName,
                     opt => opt.MapFrom(src => $"{src.ApplicationUser_InsertUser.FullName}")
@@ -111,7 +110,7 @@ namespace Interanet.API.AutoMapperProfiles
 
 
 
-            CreateMap<VmAddStoryRequest, Storys>().AfterMap((_, dest) =>
+            CreateMap<VmAddStoryRequest, Story>().AfterMap((_, dest) =>
                 {
                     dest.InsertUserDate = DateTime.UtcNow.ToLocalTime();
                 });
@@ -129,7 +128,7 @@ namespace Interanet.API.AutoMapperProfiles
 
             //############################################## Start  CalenderEvents ################################################
 
-            CreateMap<CalenderEvents, VmCalenderEventResponse>()
+            CreateMap<CalenderEvent, VmCalenderEventResponse>()
                .ForMember(
                     dest => dest.InsertUserName,
                     opt => opt.MapFrom(src => $"{src.ApplicationUser_InsertUser.FullName}")
@@ -149,7 +148,7 @@ namespace Interanet.API.AutoMapperProfiles
 
 
 
-            CreateMap<VmAddCalenderEventRequest, CalenderEvents>().AfterMap((_, dest) =>
+            CreateMap<VmAddCalenderEventRequest, CalenderEvent>().AfterMap((_, dest) =>
                 {
                     dest.InsertUserDate = DateTime.UtcNow.ToLocalTime();
                 });
@@ -161,7 +160,7 @@ namespace Interanet.API.AutoMapperProfiles
                 );
 
             //############################################## Start  MeetingTypes ################################################
-            CreateMap<MeetingTypes, VmMeetingTypes>().ForMember(
+            CreateMap<MeetingType, VmMeetingTypes>().ForMember(
                 dest => dest.Id,
                 opt => opt.MapFrom(src => $"{src.Id}")
             ).ForMember(
@@ -249,41 +248,10 @@ namespace Interanet.API.AutoMapperProfiles
 
 
 
-            //############################################## Start  Systems  ################################################
+            //############################################## Start  System  ################################################
 
-            CreateMap<Systems, VmSystemResponse>()
-               .ForMember(
-                    dest => dest.InsertUserName,
-                    opt => opt.MapFrom(src => $"{src.ApplicationUser_InsertUser.FullName}")
-                )
-                .ForMember(
-                    dest => dest.UpdateUserName,
-                    opt => opt.MapFrom(src => $"{src.ApplicationUser_UpdateUser.FullName}")
-                )
-                 .ForMember(
-                    dest => dest.EmployeeName,
-                    opt => opt.MapFrom(src => $"{src.Employee.FullName}")
-                )
-                 .ForMember(
-                    dest => dest.PublishDateTime,
-                    opt => opt.MapFrom(src => $"{src.PublishDateTime.Value.ToUniversalTime().ToLocalTime()}")
-                    );
+           
 
-
-
-                    CreateMap<VmAddSystemRequest, Systems>().AfterMap((_, dest) =>
-                    {
-                        dest.InsertUserDate = DateTime.UtcNow.ToLocalTime();
-                    });
-
-                    CreateMap<VmGetAdminSystemServiceResponse, VmGetAdminSystemResponse>()
-                        .ForMember(
-                            dest => dest.Page,
-                            opt => opt.MapFrom(src => src.Page)
-                        ).ForMember(
-                            dest => dest.Data,
-                            opt => opt.MapFrom(src => src.Data)
-                        );
             //############################################## Start  Table Name ################################################
             //############################################## Start  Table Name ################################################
             //############################################## Start  Table Name ################################################

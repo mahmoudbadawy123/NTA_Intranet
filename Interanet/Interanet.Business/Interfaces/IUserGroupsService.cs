@@ -10,6 +10,6 @@ namespace Interanet.Business.Interfaces
 {
     public interface IUserGroupsService
     {
-        Task<IEnumerable<UserGroups>> GetAllGroups();
+        Task<IEnumerable<UserGroup>> GetAllGroups();
     }
 }

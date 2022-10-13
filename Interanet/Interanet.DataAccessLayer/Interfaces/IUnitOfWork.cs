@@ -10,13 +10,12 @@ namespace Interanet.DataAccessLayer.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IBaseRepository<ApplicationUser> ApplicationUser { get; }
-        IBaseRepository<UserGroups> UserGroups { get; }
-        IBaseRepository<Announcements> Announcements { get; }
-        IBaseRepository<Storys> Storys { get; }
-        IBaseRepository<CalenderEvents> CalenderEvents { get; }
-        IBaseRepository<MeetingTypes> MeetingTypes { get; }
+        IBaseRepository<UserGroup> UserGroups { get; }
+        IBaseRepository<Announcement> Announcements { get; }
+        IBaseRepository<Story> Storys { get; }
+        IBaseRepository<CalenderEvent> CalenderEvents { get; }
+        IBaseRepository<MeetingType> MeetingTypes { get; }
         IBaseRepository<Meeting> Meetings { get; }
-        IBaseRepository<Systems> Systems { get; }
         IBaseRepository<ApplicationUserMeeting> ApplicationUserMeetings { get; }
 
         //DbRawSqlQuery<T> ExecQuery<T>(string query);

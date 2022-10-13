@@ -22,7 +22,7 @@ namespace Interanet.Business.Classes
         }
 
 
-        public async Task<VmAddUpdateDeleteResponse> Add(Announcements Request, VmUserData UserData)
+        public async Task<VmAddUpdateDeleteResponse> Add(Announcement Request, VmUserData UserData)
         {
             VmAddUpdateDeleteResponse Response = new VmAddUpdateDeleteResponse();
             try
@@ -76,7 +76,7 @@ namespace Interanet.Business.Classes
                     return Response;
                 }
 
-                Announcements Data = _UnitOfWork.Announcements.GetByIdAsync(Request.Id).Result;
+                Announcement Data = _UnitOfWork.Announcements.GetByIdAsync(Request.Id).Result;
                 if (Data is not null)
                 {
         
@@ -124,7 +124,7 @@ namespace Interanet.Business.Classes
             VmAddUpdateDeleteResponse Response = new VmAddUpdateDeleteResponse();
             try
             {
-                Announcements Data = _UnitOfWork.Announcements.GetByIdAsync(Request.Id).Result;
+                Announcement Data = _UnitOfWork.Announcements.GetByIdAsync(Request.Id).Result;
                 if (Data is not null)
                 {
                     _UnitOfWork.Announcements.Delete(Data);

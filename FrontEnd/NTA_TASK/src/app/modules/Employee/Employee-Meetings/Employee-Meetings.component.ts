@@ -10,6 +10,7 @@ import { UpdateAdminMeetingsComponent } from '../../admin/Admin-Meetings/Update-
 import { ConfirmDialogComponent } from '../../Shared/Shared-Components/confirm-dialog/confirm-dialog.component';
 import { ApiService } from '../../Shared/Shared-Services/http/Api.service';
 import { EventColor } from 'calendar-utils';
+import { ShowMeetingsInfoComponent } from './Show-Meetings-info/Show-Meetings-info.component';
 
 const colors: Record<string, EventColor> = {
   red: {
@@ -53,20 +54,34 @@ export class EmployeeMeetingsComponent implements OnInit {
   viewDate: Date = new Date();
   actions: CalendarEventAction[] = [
     {
-      label: '<div class="btn btn-primary Edit">Edit</div>',
+      label: '<div class="btn btn-primary Edit" >Edit</div>',
       a11yLabel: 'Edit',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
+        this.handleEvent('Edit', event);
       },
     },
     {
       label: '<div class="btn btn-primary Delete">Delete</div>',
       a11yLabel: 'Delete',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Deleted', event);
+        this.handleEvent('Delete', event);
       },
     },
   ];
+
+
+  ShowOnlyactions: CalendarEventAction[] = [
+    {
+      label: '<div class="btn btn-primary Show" >Show</div>',
+      a11yLabel: 'Show',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.handleEvent('Show', event);
+      },
+    }
+  ];
+
+
+
 
   refresh = new Subject<void>();
   events: CalendarEvent[] = [];
@@ -86,13 +101,33 @@ export class EmployeeMeetingsComponent implements OnInit {
   }
 
   
-
+  // showeditDelete = true;
+  eventData:any = {};
+  InsertUser:any;
+  InsertUserHere:any;
   handleEvent(action: string, event: CalendarEvent): void {
-    if(action == "Edited"){
-      this.showEdit(event);
-    }
-    else if (action == "Deleted"){
-      this.Delete(event);
+   debugger;
+//     console.log(event.id);
+     this.eventData = event.id;
+  this.InsertUserHere = this.eventData?.["insertUserId"];
+//  console.log(this.InsertUser);
+    // if()
+    
+    if(this.CurrentUser == this.InsertUserHere) {
+      if(action == "Edit"){
+        this.showEdit(event);
+      }
+      else if (action == "Delete"){
+        this.Delete(event);
+      }
+    
+    }else {
+      if(action == "Show"){
+        this.ShowData(event);
+      }
+      else {
+        this.alert.error("Can not Do any Operations in this Event as it is Owner For another User");
+      }
     }
     this.refresh.next();
   }
@@ -110,16 +145,28 @@ export class EmployeeMeetingsComponent implements OnInit {
 
   
 Data :Array<any> = [];
+CurrentUser :any ;
 GetData() {
   this.events = [];
     this.api.get( `${this.ControllerRoute}/GetAllForEmp`).subscribe(
       (res: any) => {
         debugger;
         console.log(res);
-        this.Data = res;
+        this.Data = res["data"];
+        this.CurrentUser = res["currentUser"];
         this.spinner.hide();
         this.Data?.forEach(element => {
           debugger;
+          var Action = null;
+          this.InsertUser = element.insertUserId;
+          if(this.CurrentUser == this.InsertUser) {
+
+            Action = this.actions;
+          }
+          else {
+            Action = this.ShowOnlyactions;
+          }
+
 
           this.events.push( 
             {
@@ -128,7 +175,7 @@ GetData() {
               start: startOfDay(new Date(element["meatingDateTime"])),
               end: endOfDay(new Date(element["meatingDateTime"])),
               color: colors['red'],
-              actions: this.actions,
+              actions: Action,
               allDay: true,
               draggable: false,
               resizable: {
@@ -137,6 +184,7 @@ GetData() {
               },
             },
           );
+       
         });
 
         // https://github.com/mattlewis92/angular-calendar/issues/204
@@ -166,6 +214,20 @@ showAdd() {
 
 showEdit(item: any) {
   let dialogRef = this.dialog.open(UpdateAdminMeetingsComponent, {
+    width: '1000px',
+    height: '70vh',
+    data: item.id
+  });
+  dialogRef.afterClosed()
+    .subscribe(data => {
+      if (data) {
+        this.GetData();
+      }
+    });
+}
+
+ShowData(item: any){
+  let dialogRef = this.dialog.open(ShowMeetingsInfoComponent, {
     width: '1000px',
     height: '70vh',
     data: item.id

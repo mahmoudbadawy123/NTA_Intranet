@@ -22,7 +22,7 @@ namespace Interanet.DataAccessLayer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Interanet.Model.Data.Announcements", b =>
+            modelBuilder.Entity("Interanet.Model.Data.Announcement", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -165,7 +165,7 @@ namespace Interanet.DataAccessLayer.Migrations
                     b.ToTable("ApplicationUserMeetings");
                 });
 
-            modelBuilder.Entity("Interanet.Model.Data.CalenderEvents", b =>
+            modelBuilder.Entity("Interanet.Model.Data.CalenderEvent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -268,7 +268,7 @@ namespace Interanet.DataAccessLayer.Migrations
                     b.ToTable("Meetings");
                 });
 
-            modelBuilder.Entity("Interanet.Model.Data.MeetingTypes", b =>
+            modelBuilder.Entity("Interanet.Model.Data.MeetingType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -297,7 +297,7 @@ namespace Interanet.DataAccessLayer.Migrations
                     b.ToTable("MeetingTypes");
                 });
 
-            modelBuilder.Entity("Interanet.Model.Data.Storys", b =>
+            modelBuilder.Entity("Interanet.Model.Data.Story", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -347,59 +347,7 @@ namespace Interanet.DataAccessLayer.Migrations
                     b.ToTable("Storys");
                 });
 
-            modelBuilder.Entity("Interanet.Model.Data.Systems", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("EmployeeUserId")
-                        .IsRequired()
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("InsertUserDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("InsertUserId")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Link")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("PublishDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("SystemName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdateUserDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdateUserId")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool?>("isScheduledPublish")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeUserId");
-
-                    b.HasIndex("InsertUserId");
-
-                    b.HasIndex("UpdateUserId");
-
-                    b.ToTable("Systems");
-                });
-
-            modelBuilder.Entity("Interanet.Model.Data.UserGroups", b =>
+            modelBuilder.Entity("Interanet.Model.Data.UserGroup", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -564,9 +512,9 @@ namespace Interanet.DataAccessLayer.Migrations
                     b.ToTable("UserTokens", "security");
                 });
 
-            modelBuilder.Entity("Interanet.Model.Data.Announcements", b =>
+            modelBuilder.Entity("Interanet.Model.Data.Announcement", b =>
                 {
-                    b.HasOne("Interanet.Model.Data.UserGroups", "UserGroups")
+                    b.HasOne("Interanet.Model.Data.UserGroup", "UserGroups")
                         .WithMany()
                         .HasForeignKey("GroupId");
 
@@ -587,7 +535,7 @@ namespace Interanet.DataAccessLayer.Migrations
 
             modelBuilder.Entity("Interanet.Model.Data.ApplicationUser", b =>
                 {
-                    b.HasOne("Interanet.Model.Data.UserGroups", "UserGroups")
+                    b.HasOne("Interanet.Model.Data.UserGroup", "UserGroups")
                         .WithMany()
                         .HasForeignKey("GroupId");
 
@@ -613,9 +561,9 @@ namespace Interanet.DataAccessLayer.Migrations
                     b.Navigation("Meeting");
                 });
 
-            modelBuilder.Entity("Interanet.Model.Data.CalenderEvents", b =>
+            modelBuilder.Entity("Interanet.Model.Data.CalenderEvent", b =>
                 {
-                    b.HasOne("Interanet.Model.Data.UserGroups", "UserGroups")
+                    b.HasOne("Interanet.Model.Data.UserGroup", "UserGroups")
                         .WithMany()
                         .HasForeignKey("GroupId");
 
@@ -640,7 +588,7 @@ namespace Interanet.DataAccessLayer.Migrations
                         .WithMany()
                         .HasForeignKey("InsertUserId");
 
-                    b.HasOne("Interanet.Model.Data.MeetingTypes", "MeetingTypes")
+                    b.HasOne("Interanet.Model.Data.MeetingType", "MeetingTypes")
                         .WithMany()
                         .HasForeignKey("MeatingTypeId");
 
@@ -655,9 +603,9 @@ namespace Interanet.DataAccessLayer.Migrations
                     b.Navigation("MeetingTypes");
                 });
 
-            modelBuilder.Entity("Interanet.Model.Data.Storys", b =>
+            modelBuilder.Entity("Interanet.Model.Data.Story", b =>
                 {
-                    b.HasOne("Interanet.Model.Data.UserGroups", "UserGroups")
+                    b.HasOne("Interanet.Model.Data.UserGroup", "UserGroups")
                         .WithMany()
                         .HasForeignKey("GroupId");
 
@@ -674,29 +622,6 @@ namespace Interanet.DataAccessLayer.Migrations
                     b.Navigation("ApplicationUser_UpdateUser");
 
                     b.Navigation("UserGroups");
-                });
-
-            modelBuilder.Entity("Interanet.Model.Data.Systems", b =>
-                {
-                    b.HasOne("Interanet.Model.Data.ApplicationUser", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Interanet.Model.Data.ApplicationUser", "ApplicationUser_InsertUser")
-                        .WithMany()
-                        .HasForeignKey("InsertUserId");
-
-                    b.HasOne("Interanet.Model.Data.ApplicationUser", "ApplicationUser_UpdateUser")
-                        .WithMany()
-                        .HasForeignKey("UpdateUserId");
-
-                    b.Navigation("ApplicationUser_InsertUser");
-
-                    b.Navigation("ApplicationUser_UpdateUser");
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

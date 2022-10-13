@@ -8,21 +8,23 @@ using System.Threading.Tasks;
 
 namespace Interanet.Model.Data
 {
-    public class CalenderEvents
+    public class System
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        public string EventName { get; set; }
+        public string SystemName { get; set; }
 
         [Required]
-        public string Description { get; set; }
+        public string Link { get; set; }
+        [StringLength(450)]
+        public string EmployeeUserId { get; set; }
 
-        public int? GroupId { get; set; }
+        [ForeignKey("EmployeeUserId")]
+        public virtual ApplicationUser Employee { get; set; }
 
-        [ForeignKey("GroupId")]
-        public virtual UserGroups UserGroups { get; set; }
-        public DateTime? EventDateTime { get; set; } = DateTime.UtcNow.ToLocalTime();
+        public bool? isScheduledPublish { get; set; } = false;
+        public DateTime? PublishDateTime { get; set; } = DateTime.UtcNow.ToLocalTime();
         public DateTime? InsertUserDate { get; set; }
         public DateTime? UpdateUserDate { get; set; }
         [StringLength(450)]

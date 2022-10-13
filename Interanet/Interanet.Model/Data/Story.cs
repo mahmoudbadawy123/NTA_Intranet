@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Interanet.Model.Data
 {
-    public class Storys
+    public class Story
     {
         [Key]
         public int Id { get; set; }
@@ -21,7 +21,7 @@ namespace Interanet.Model.Data
         public int? GroupId { get; set; }
 
         [ForeignKey("GroupId")]
-        public virtual UserGroups UserGroups { get; set; }
+        public virtual UserGroup UserGroups { get; set; }
 
         public bool? isScheduledPublish { get; set; } = false;
         public DateTime? PublishDateTime { get; set; } = DateTime.UtcNow.ToLocalTime();

@@ -17,7 +17,7 @@ namespace Interanet.Business.Classes
             _unitOfWork = unitOfWork;
         }
 
-        public Task<IEnumerable< UserGroups>> GetAllGroups()
+        public Task<IEnumerable< UserGroup>> GetAllGroups()
         {
            return _unitOfWork.UserGroups.GetAllAsync();
         }
