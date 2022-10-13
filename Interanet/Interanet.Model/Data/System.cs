@@ -10,7 +10,7 @@ namespace Interanet.Model.Data
 {
     public class System
     {
-        [Key]
+        [Key] 
         public int Id { get; set; }
         [Required]
         public string SystemName { get; set; }
