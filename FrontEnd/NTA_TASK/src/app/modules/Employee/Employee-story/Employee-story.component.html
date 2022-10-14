@@ -6,6 +6,10 @@
     </h1>
   </div>
 
+
+  <div *ngIf="Data.length > 0; else elseBlock">
+
+
   <div class="row">
   <mat-card *ngFor="let Obj of Data" class="example-card">
     <mat-card-title>{{Obj?.header}}</mat-card-title>
@@ -28,6 +32,12 @@
     (page)="paginatorEvent = getServerData($event)">
   </mat-paginator>
   </div>
-    
+</div>
+
+<ng-template #elseBlock>
+  <h1 class=" text-center m-auto d-block EmptyDataArea text-danger" >
+    The is no  stories For You Until Now 
+  </h1>
+</ng-template>
 </div>
 

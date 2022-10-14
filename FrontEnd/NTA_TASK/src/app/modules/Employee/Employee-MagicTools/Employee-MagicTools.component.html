@@ -6,8 +6,11 @@
     </h1>
   </div>
 
-  <div class="row">
-      <mat-card *ngFor="let Obj of Data" class="example-card col-3 mx-auto">
+
+
+  <div *ngIf="Data.length > 0; else elseBlock">
+    <div class="row">
+      <mat-card *ngFor="let Obj of Data" class="example-card col-4 mx-auto">
         <mat-card-title>{{Obj?.systemName}}</mat-card-title>
         <mat-card-content>
           <button class="My_Btn"
@@ -19,6 +22,19 @@
         </mat-card-actions>
       </mat-card>
     </div>
+
+    <mat-paginator [length]="page.totalElements" [pageSize]="5" [pageSizeOptions]="[2,5, 10, 25, 100]"
+    (page)="paginatorEvent = getServerData($event)">
+  </mat-paginator>
+  </div>
+<ng-template #elseBlock>
+  <h1 class=" text-center m-auto d-block EmptyDataArea text-danger" >
+    The is no  Magic Tools For You Until Now 
+  </h1>
+</ng-template>
+
+
+  
 
 </div>
 

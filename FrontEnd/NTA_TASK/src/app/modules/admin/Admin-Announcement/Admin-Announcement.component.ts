@@ -34,6 +34,7 @@ export class AdminAnnouncementComponent
     'id',
     'labelName',
     'messageBody',
+    'userGroupName',
     'publishDateTime',
     'insertUserName',
     'updateUserName',

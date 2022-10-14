@@ -174,18 +174,10 @@ namespace Interanet.Business.Classes
                 {
                     IsEmpty = true;
                 }
-                string[] JoinedTables = { "ApplicationUserRelatedSystems",  "ApplicationUser_InsertUser", "ApplicationUser_UpdateUser" };
-
-                var ApplicationUserIds = _UnitOfWork.ApplicationUserRelatedSystems.FindAll(x => x.ApplicationUserId == UserId)
-                    .Select(x => x.ApplicationUserId)
-                    .ToList();
-
-                var  Data = _UnitOfWork.RelatedSystems.FindAll(r => IsEmpty || r.SystemName.Contains(Page.Filter)
-                                 || r.Link.Contains(Page.Filter)
-                                 || r.ApplicationUser_InsertUser.FullName.Contains(Page.Filter)
-                                 || r.InsertUserId == UserId
-                                 || r.ApplicationUserRelatedSystems.Select(x => x.ApplicationUserId).Contains(UserId),
-                                 JoinedTables).ToList().OrderByDescending(O => O.Id);
+                string[] JoinedTables = { "ApplicationUserRelatedSystems", "ApplicationUser_InsertUser", "ApplicationUser_UpdateUser", "ApplicationUsers" };
+                var Data = _UnitOfWork.RelatedSystems.
+                    FindAll(r => r.ApplicationUsers.Select(x => x.Id).Contains(UserId)
+                    ,JoinedTables).ToList();
 
 
                 Page.TotalElements = Data.Count();

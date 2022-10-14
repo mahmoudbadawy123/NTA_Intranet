@@ -134,7 +134,7 @@ namespace Interanet.API.Controllers
                 var Data = await _RelatedSystemsService.GetAllForEmp(this.User.Identity.GetUserId() , Page);
                 var DataMapped = _mapper.Map<VmGetAdminRelatedSystemResponse>(Data);
 
-                return Ok(new { CurrentUser = CurrentUserId, Data = DataMapped });
+                return Ok(  DataMapped );
             }
             catch (Exception ex)
             {

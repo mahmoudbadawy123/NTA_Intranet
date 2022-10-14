@@ -89,8 +89,8 @@ namespace Interanet.DataAccessLayer.Class
 
             builder.Entity<RelatedSystem>().HasOne(A => A.ApplicationUser_UpdateUser);
 
-            //################################### Test for Retrieve it in Related Sys ########################################3
-            builder.Entity<ApplicationUserRelatedSystem>().HasOne(A => A.ApplicationUser);
+            ////################################### Test for Retrieve it in Related Sys ########################################3
+            //builder.Entity<ApplicationUserRelatedSystem>().HasOne(A => A.ApplicationUser);
 
         }
     }

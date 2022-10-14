@@ -11,9 +11,11 @@ import { ApiService } from '../../Shared/Shared-Services/http/Api.service';
   templateUrl: './Employee-MagicTools.component.html',
   styleUrls: ['./Employee-MagicTools.component.css'],
 })
-export class EmployeeMagicToolsComponent implements OnInit {
+export class EmployeeMagicToolsComponent 
+extends BaseComponent
+implements OnInit {
   ControllerRoute: string = 'RelatedSystems';
-  row: Array<any> = [];
+  row:any;
   public showSearch: boolean = false;
   public searchText!: string;
 
@@ -23,7 +25,9 @@ export class EmployeeMagicToolsComponent implements OnInit {
     private api: ApiService,
     private spinner: NgxSpinnerService,
     private alert: ToastrService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.GetData();
@@ -31,11 +35,17 @@ export class EmployeeMagicToolsComponent implements OnInit {
 
   Data: any;
   GetData() {
-    this.api.get(`${this.ControllerRoute}/GetAllForEmp`).subscribe(
+    this.api.post(`${this.ControllerRoute}/GetAllForEmp` , this.page).subscribe(
       (res: any) => {
-        this.Data = res.data;
-
+        this.Data = res?.data;
+        console.log(this.Data);
+        this.row = res?.page;
+        console.log(this.row);
         this.spinner.hide();
+        if (this.row) {
+  
+            this.page = this.row;
+        }
       },
       (error) => {
         this.spinner.hide();
@@ -46,4 +56,14 @@ export class EmployeeMagicToolsComponent implements OnInit {
   RedirectToSysten(Obj: any) {
     console.log(Obj);
   }
+
+
+  getServerData(event: any) {
+    //debugger
+      this.page.pageNumber = event.pageIndex;
+      this.page.size = event.pageSize;
+      this.GetData();
+    
+    }
+
 }
