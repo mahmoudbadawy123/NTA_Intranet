@@ -40,17 +40,14 @@ namespace Interanet.Business.Classes
 
                 Meeting Data = new Meeting();
                 Data.Id = (_UnitOfWork.Meetings.GetAll().Select(x => (int?)x.Id).Max() ?? 0) +1; 
-                Data.PublishDateTime = Request.MeatingDateTime;
+                Data.PublishDateTime = Request.PublishDateTime;
                 Data.Description = Request.Description;
                 Data.isScheduledPublish = Request.isScheduledPublish;
                 Data.InsertUserId = Request.InsertUserId;
                 Data.InsertUserDate = Request.InsertUserDate;
-                //Data.UpdateUserId = UserData.UpdateUserId;
-                //Data.UpdateUserDate = Request.UpdateUserDate;
                 Data.MeatingDateTime = Request.MeatingDateTime;
                 Data.MeatingLink = Request.MeatingLink;
                 Data.MeatingLocation = Request.MeatingLocation;
-                Data.MeatingDateTime = Request.MeatingDateTime;
                 Data.MeatingName = Request.MeatingName;
                 Data.MeatingTypeId = Request.MeatingTypeId;
                 List<ApplicationUserMeeting> UserMeetings = new List<ApplicationUserMeeting>();
@@ -61,7 +58,6 @@ namespace Interanet.Business.Classes
                     UserMeeting.ApplicationUserId = item.Id;
                     UserMeetings.Add(UserMeeting);
                 }
-                //await _UnitOfWork. Meetings.AddAsync(Data);
                 Data.ApplicationUserMeetings = UserMeetings;
                 await _UnitOfWork.Meetings.AddAsync(Data);
 
@@ -148,22 +144,9 @@ namespace Interanet.Business.Classes
             VmGetAdminMeetingServiceResponse Response = new VmGetAdminMeetingServiceResponse();
             try
             {
-                var ApplicationUserIds = _UnitOfWork.ApplicationUserMeetings.FindAll(x => x.ApplicationUserId == UserId)
-                    .Select(x=>x.ApplicationUserId )
-                    .ToList();
                 string[] JoinedTables = { "ApplicationUserMeetings", "MeetingTypes", "ApplicationUser_InsertUser", "ApplicationUser_UpdateUser" };
                 List<Meeting> Data = _UnitOfWork.Meetings.FindAll(x => x.InsertUserId == UserId
                 || x.ApplicationUserMeetings.Select(x=> x.ApplicationUserId).Contains(UserId), JoinedTables).ToList();
-
-
-                //            var Data =  _UnitOfWork.Meetings
-                //.Where(post =>
-                //    _UnitOfWork.ApplicationUserMeetings.Any(bp => bp.ApplicationUserId == UserId)
-                //)
-                //.ToList();
-
-
-
                 return Data;
             }
             catch (Exception ex)
@@ -178,12 +161,11 @@ namespace Interanet.Business.Classes
             try
             {
                 Meeting Data = _UnitOfWork.Meetings.GetByIdAsync(Request.Id).Result;
-                Data.PublishDateTime = Request.MeatingDateTime;
+                Data.PublishDateTime = Request.PublishDateTime;
                 Data.Description = Request.Description;
                 Data.isScheduledPublish = Request.isScheduledPublish;
                 Data.UpdateUserId = UserData.UserId;
                 Data.UpdateUserDate = DateTime.UtcNow.ToLocalTime();
-
                 Data.MeatingDateTime = UserData.MeatingDateTime;
                 Data.MeatingLink = Request.MeatingLink;
                 Data.MeatingLocation = Request.MeatingLocation;
@@ -205,7 +187,6 @@ namespace Interanet.Business.Classes
                     UserMeeting.ApplicationUserId = item.Id;
                     UserMeetings.Add(UserMeeting);
                 }
-                //await _UnitOfWork. Meetings.AddAsync(Data);
                 Data.ApplicationUserMeetings = UserMeetings;
                 _UnitOfWork.Meetings.Update(Data);
 

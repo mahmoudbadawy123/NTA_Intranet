@@ -25,6 +25,10 @@ namespace Interanet.Model.Data
         public virtual ICollection<Meeting> Meetings { get; set; }
         public virtual List<ApplicationUserMeeting> ApplicationUserMeetings { get; set; }
 
+        //#########################################################################################
+        public virtual ICollection<RelatedSystem> RelatedSystems { get; set; }
+        public virtual List<ApplicationUserRelatedSystem> ApplicationUserRelatedSystems { get; set; }
+
 
     }
 }

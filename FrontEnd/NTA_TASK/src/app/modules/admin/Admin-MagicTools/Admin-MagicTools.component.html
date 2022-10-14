@@ -61,10 +61,16 @@
         <mat-cell *matCellDef="let element" data-label="systemName"> {{element.systemName}} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="employeeName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header="employeeName"> employee Name 
+      <ng-container matColumnDef="applicationUserRelatedSystems">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="applicationUserRelatedSystems"> employee Name 
         </mat-header-cell>
-        <mat-cell *matCellDef="let element" data-label="employeeName"> {{element.employeeName}} </mat-cell>
+        <mat-cell *matCellDef="let element" data-label="applicationUserRelatedSystems">
+          <ol>
+            <li *ngFor="let C of element.applicationUserRelatedSystems">
+              {{C.name}}
+            </li>
+          </ol> 
+        </mat-cell>
       </ng-container>
 
      

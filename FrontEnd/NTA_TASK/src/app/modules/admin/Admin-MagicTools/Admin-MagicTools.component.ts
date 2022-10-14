@@ -22,7 +22,7 @@ implements OnInit
 
 
 
-ControllerRoute:string = "Systems";
+ControllerRoute:string = "RelatedSystems";
 
 
 row: Array<any> = [];
@@ -30,7 +30,7 @@ row: Array<any> = [];
 public displayedColumns = [
   'id',
   'systemName',
-  'employeeName',
+  'applicationUserRelatedSystems',
   'publishDateTime',
   'insertUserName',
   'updateUserName',

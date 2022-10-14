@@ -26,4 +26,11 @@ namespace Interanet.Model.View.General
         public DateTime? PublishDateTime { get; set; }
         public DateTime? MeatingDateTime { get; set; }
     }
+
+
+    public class VmRelatedSystemData
+    {
+        public string UserId { get; set; }
+        public DateTime? PublishDateTime { get; set; }
+    }
 }

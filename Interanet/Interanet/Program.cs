@@ -53,6 +53,7 @@ builder.Services.AddScoped<IStorysService, StorysService>();
 builder.Services.AddScoped<ICalenderEventsService, CalenderEventsService>();
 builder.Services.AddScoped<IMeetingTypesService, MeetingTypesService>();
 builder.Services.AddScoped<IMeetingsService, MeetingsService>();
+builder.Services.AddScoped<IRelatedSystemService, RelatedSystemService>();
 
 
 

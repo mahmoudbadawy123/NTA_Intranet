@@ -6,14 +6,18 @@ using Interanet.Model.View.Calender;
 using Interanet.Model.View.LookUps;
 using Interanet.Model.View.Meetings;
 using Interanet.Model.View.Story;
+using Interanet.Model.View.Systems;
 using Microsoft.AspNetCore.Identity;
 
 namespace Interanet.API.AutoMapperProfiles
 {
 
     //https://tech.playgokids.com/auto-mapper-net6/
+
+
     public class Mapping_Profile : Profile
     {
+
         public Mapping_Profile()
         {
 
@@ -248,9 +252,79 @@ namespace Interanet.API.AutoMapperProfiles
 
 
 
-            //############################################## Start  System  ################################################
+            //############################################## Start  RelatedSystem  ################################################
 
-           
+            CreateMap<RelatedSystem, VmRelatedSystemResponse>()
+                .ForMember(
+                     dest => dest.InsertUserName,
+                     opt => opt.MapFrom(src => $"{src.ApplicationUser_InsertUser.FullName}")
+                 )
+                 .ForMember(
+                     dest => dest.UpdateUserName,
+                     opt => opt.MapFrom(src => $"{src.ApplicationUser_UpdateUser.FullName}")
+                 )
+              
+             
+
+                 .ForMember(
+                     dest => dest.PublishDateTime,
+                     opt => opt.MapFrom(src => $"{src.PublishDateTime.Value.ToUniversalTime().ToLocalTime()}")
+                     )
+
+
+                 .ForMember(
+                     dest => dest.ApplicationUserRelatedSystems,
+                     opt => opt.MapFrom(src => src.ApplicationUserRelatedSystems)
+                     )
+
+                ;
+
+
+
+            CreateMap<ApplicationUserRelatedSystem, VmApplicationUserRelatedSystem>()
+            .ForMember(
+                dest => dest.RelatedSystemId,
+                opt => opt.MapFrom(src => src.RelatedSystemId)
+                )
+             .ForMember(
+                dest => dest.Id,
+                opt => opt.MapFrom(src => src.ApplicationUserId)
+                )
+
+              .ForMember(
+                dest => dest.Name,
+                opt => opt.MapFrom(src => src.ApplicationUser.FullName)
+                )
+
+            ;
+
+            CreateMap<ApplicationUser, VmRecieverUserRequest>().ForMember(
+                    dest => dest.Id,
+                    opt => opt.MapFrom(src => $"{src.Id}")
+                ).ForMember(
+                    dest => dest.Name,
+                    opt => opt.MapFrom(src => $"{src.FullName}")
+                );
+
+
+
+
+
+
+
+            CreateMap<VmAddRelatedSystemRequest, RelatedSystem>().AfterMap((_, dest) =>
+            {
+                dest.InsertUserDate = DateTime.UtcNow.ToLocalTime();
+            });
+
+            CreateMap<VmGetAdminRelatedSystemServiceResponse, VmGetAdminRelatedSystemResponse>()
+                .ForMember(
+                    dest => dest.Page,
+                    opt => opt.MapFrom(src => src.Page)
+                ).ForMember(
+                    dest => dest.Data,
+                    opt => opt.MapFrom(src => src.Data)
+                );
 
             //############################################## Start  Table Name ################################################
             //############################################## Start  Table Name ################################################

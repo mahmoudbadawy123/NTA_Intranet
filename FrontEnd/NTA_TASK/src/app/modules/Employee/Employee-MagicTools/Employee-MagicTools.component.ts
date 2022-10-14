@@ -12,7 +12,7 @@ import { ApiService } from '../../Shared/Shared-Services/http/Api.service';
   styleUrls: ['./Employee-MagicTools.component.css'],
 })
 export class EmployeeMagicToolsComponent implements OnInit {
-  ControllerRoute: string = 'Systems';
+  ControllerRoute: string = 'RelatedSystems';
   row: Array<any> = [];
   public showSearch: boolean = false;
   public searchText!: string;

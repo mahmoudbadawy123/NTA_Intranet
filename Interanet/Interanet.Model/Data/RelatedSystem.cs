@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace Interanet.Model.Data
 {
-    public class System
+    public class RelatedSystem
     {
-        [Key] 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         [Required]
         public string SystemName { get; set; }
@@ -18,10 +19,6 @@ namespace Interanet.Model.Data
         [Required]
         public string Link { get; set; }
         [StringLength(450)]
-        public string EmployeeUserId { get; set; }
-
-        [ForeignKey("EmployeeUserId")]
-        public virtual ApplicationUser Employee { get; set; }
 
         public bool? isScheduledPublish { get; set; } = false;
         public DateTime? PublishDateTime { get; set; } = DateTime.UtcNow.ToLocalTime();
@@ -36,5 +33,11 @@ namespace Interanet.Model.Data
         public virtual ApplicationUser ApplicationUser_InsertUser { get; set; }
         [ForeignKey("UpdateUserId")]
         public virtual ApplicationUser ApplicationUser_UpdateUser { get; set; }
+
+
+        //###########################################################################################
+
+        public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; }
+        public virtual List<ApplicationUserRelatedSystem> ApplicationUserRelatedSystems { get; set; }
     }
 }

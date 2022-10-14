@@ -20,7 +20,7 @@ implements OnInit {
 
 
 
-  ControllerRoute:string = "Systems";
+  ControllerRoute:string = "RelatedSystems";
   constructor(
     public dialogRef: MatDialogRef<AddAdminMagicToolsComponent>,
     private api: ApiService,
@@ -33,7 +33,7 @@ implements OnInit {
       // id: new FormControl('' ,[Validators.required]),
       systemName: new FormControl('', [Validators.required]),
       link: new FormControl('', [Validators.required]),
-      employeeUserId: new FormControl(-1),
+      recieverUserIds: new FormControl(-1),
       isScheduledPublish: new FormControl(),
       publishDateTime: new FormControl(this.today),
     });
@@ -45,10 +45,31 @@ implements OnInit {
 
   userData: any;
 
+  selectedItems : Array<any> =[];
+  dropdownSettings = {};
+
   ngOnInit() {
     this.UsersExceptMe();
-  }
 
+    this.selectedItems = [
+    
+    ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      allowSearchFilter: true
+    };
+
+  }
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
+  }
   cancel(): void {
     this.dialogRef.close();
   }
@@ -64,16 +85,18 @@ implements OnInit {
   }
 
   okClick() {
-    if(this.Form.value.groupId == -1){
+    debugger;
+    if(this.Form.value.recieverUserIds == -1){
       console.log(this.Form.value);
-      this.alert.warning("Please Choose Group that you will publish announcement For");
+      this.alert.warning("Please Choose Recievers that you will publish Magic tool For");
       return;
     }
-
+    debugger;
     console.log(this.Form.value);
     this.api.post(`${this.ControllerRoute}/Add`, this.Form.value).subscribe(
       (res: any) => {
-        this.alert.success("announcement published Succesfully");
+        debugger;
+        this.alert.success("Magic tool published Succesfully");
         this.dialogRef.close(res);
       },
       (error) => {
@@ -88,4 +111,9 @@ implements OnInit {
       this.form["publishDateTime"].setValue(this.today);
     }
   }
+
+
+
+
+
 }

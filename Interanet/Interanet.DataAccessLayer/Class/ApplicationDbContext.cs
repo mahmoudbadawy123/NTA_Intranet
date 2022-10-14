@@ -28,6 +28,10 @@ namespace Interanet.DataAccessLayer.Class
         public DbSet<ApplicationUserMeeting> ApplicationUserMeetings { get; set; }
 
 
+        public DbSet<RelatedSystem> RelatedSystems { get; set; }
+        public DbSet<ApplicationUserRelatedSystem> ApplicationUserRelatedSystems { get; set; }
+
+       
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -42,13 +46,13 @@ namespace Interanet.DataAccessLayer.Class
             builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens", "security");
 
 
-            //#########################################################################################
-            builder.Entity<Meeting>() //post
+            //############################################ M-to-M between Meeting and  ApplicationUser #############################################
+            builder.Entity<Meeting>() 
                     .HasMany(p => p.ApplicationUsers)
                     .WithMany(t => t.Meetings)
                     .UsingEntity<ApplicationUserMeeting>(
                
-                j=>j.HasOne(pt=>pt.ApplicationUser) //tags
+                j=>j.HasOne(pt=>pt.ApplicationUser) 
                     .WithMany(t=>t.ApplicationUserMeetings)
                     .HasForeignKey(pt=>pt.ApplicationUserId),
 
@@ -63,7 +67,30 @@ namespace Interanet.DataAccessLayer.Class
             builder.Entity<Meeting>().HasOne(A => A.ApplicationUser_InsertUser);
 
             builder.Entity<Meeting>().HasOne(A => A.ApplicationUser_UpdateUser);
+            //############################################ M-to-M between RelatedSystem and  ApplicationUser #############################################
+            builder.Entity<RelatedSystem>() 
+                   .HasMany(p => p.ApplicationUsers)
+                   .WithMany(t => t.RelatedSystems)
+                   .UsingEntity<ApplicationUserRelatedSystem>(
 
+               j => j.HasOne(pt => pt.ApplicationUser) 
+                   .WithMany(t => t.ApplicationUserRelatedSystems)
+                   .HasForeignKey(pt => pt.ApplicationUserId),
+
+               j => j.HasOne(pt => pt.RelatedSystem)
+                   .WithMany(t => t.ApplicationUserRelatedSystems)
+                   .HasForeignKey(pt => pt.RelatedSystemId),
+               j =>
+               {
+                   j.HasKey(t => new { t.RelatedSystemId, t.ApplicationUserId });
+               });
+
+            builder.Entity<RelatedSystem>().HasOne(A => A.ApplicationUser_InsertUser);
+
+            builder.Entity<RelatedSystem>().HasOne(A => A.ApplicationUser_UpdateUser);
+
+            //################################### Test for Retrieve it in Related Sys ########################################3
+            builder.Entity<ApplicationUserRelatedSystem>().HasOne(A => A.ApplicationUser);
 
         }
     }

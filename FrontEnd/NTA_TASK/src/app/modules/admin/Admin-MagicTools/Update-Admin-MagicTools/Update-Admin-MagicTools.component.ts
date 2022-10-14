@@ -19,10 +19,10 @@ implements OnInit {
   Form: FormGroup;
   today = new Date();
   Users:  Array<LookUps>= [];
-  ControllerRoute:string = "Systems";
 
 
 
+  ControllerRoute:string = "RelatedSystems";
   constructor(
     public dialogRef: MatDialogRef<UpdateAdminMagicToolsComponent>,
     private api: ApiService,
@@ -30,14 +30,17 @@ implements OnInit {
     private LookUps: SharedLookUpsService,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
+
+    console.log(data);
     super();
     this.Form = new FormGroup({
       id: new FormControl(this.data?.id ,[Validators.required]),
       systemName: new FormControl(this.data?.systemName, [Validators.required]),
       link: new FormControl(this.data?.link, [Validators.required]),
-      employeeUserId: new FormControl(this.data?.employeeUserId),
+      recieverUserIds: new FormControl(this.data?.applicationUserRelatedSystems),
       isScheduledPublish: new FormControl(this.data?.isScheduledPublish),
       publishDateTime: new FormControl(new Date(this.data?.publishDateTime)),
+
     });
   }
 
@@ -47,11 +50,31 @@ implements OnInit {
 
   userData: any;
 
+  selectedItems : Array<any> =[];
+  dropdownSettings = {};
+
   ngOnInit() {
     this.UsersExceptMe();
-   this.ischecked = this.data?.isScheduledPublish == true ? true:false;
-  }
 
+    this.selectedItems = [
+    
+    ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      allowSearchFilter: true
+    };
+
+  }
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
+  }
   cancel(): void {
     this.dialogRef.close();
   }
@@ -67,16 +90,18 @@ implements OnInit {
   }
 
   okClick() {
-    if(this.Form.value.groupId == -1){
+    debugger;
+    if(this.Form.value.recieverUserIds == -1){
       console.log(this.Form.value);
-      this.alert.warning("Please Choose employee that you will Update his/her System ");
+      this.alert.warning("Please Choose Recievers that you will Update Magic tool For");
       return;
     }
-
-    // console.log(this.Form.value);
+    debugger;
+    console.log(this.Form.value);
     this.api.post(`${this.ControllerRoute}/Update`, this.Form.value).subscribe(
       (res: any) => {
-        this.alert.success("System Updated Succesfully");
+        debugger;
+        this.alert.success("Magic tool Updateed Succesfully");
         this.dialogRef.close(res);
       },
       (error) => {
@@ -91,4 +116,9 @@ implements OnInit {
       this.form["publishDateTime"].setValue(this.today);
     }
   }
+
+
+
+
+
 }

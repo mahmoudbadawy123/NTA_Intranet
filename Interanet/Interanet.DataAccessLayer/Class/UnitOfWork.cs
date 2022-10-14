@@ -20,7 +20,10 @@ namespace Interanet.DataAccessLayer.Class
         public IBaseRepository<Meeting> Meetings { get; private set; }
         public IBaseRepository<ApplicationUserMeeting> ApplicationUserMeetings { get; private set; }
 
-        
+
+        public IBaseRepository<RelatedSystem> RelatedSystems { get; private set; }
+        public IBaseRepository<ApplicationUserRelatedSystem> ApplicationUserRelatedSystems { get; private set; }
+
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
@@ -32,6 +35,11 @@ namespace Interanet.DataAccessLayer.Class
             MeetingTypes = new BaseRepository<MeetingType>(_context);
             Meetings = new BaseRepository<Meeting>(_context);
             ApplicationUserMeetings = new BaseRepository<ApplicationUserMeeting>(_context);
+
+
+            RelatedSystems = new BaseRepository<RelatedSystem>(_context);
+            ApplicationUserRelatedSystems = new BaseRepository<ApplicationUserRelatedSystem>(_context);
+
         }
 
         public int Complete()

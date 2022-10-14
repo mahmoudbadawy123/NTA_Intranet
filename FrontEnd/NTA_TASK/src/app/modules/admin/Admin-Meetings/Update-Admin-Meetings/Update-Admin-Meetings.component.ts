@@ -34,7 +34,7 @@ implements OnInit {
     
     super();
 
-  
+  console.log(data);
 
     this.Form = new FormGroup({
       id: new FormControl(data?.id ,[Validators.required]),
@@ -173,17 +173,18 @@ implements OnInit {
   selectedItems : Array<any> =[];
   dropdownSettings = {};
   ngOnInit() {
-       
+      this.getMeetingUsers();
+  }
 
 
-
+  getMeetingUsers(){
     this.LookUps.GetAllMeetingsUsers(this.data.id).subscribe(
       res => {
        this.form["recieverUserIds"].setValue(res);
       }
      );
-
   }
+
   onItemSelect(item: any) {
     console.log(item);
   }
