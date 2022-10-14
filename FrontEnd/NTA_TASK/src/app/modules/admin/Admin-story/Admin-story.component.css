@@ -31,28 +31,31 @@ label {
     background: yellow;
 }
 
+
 .mat-column-id , .mat-column-Edit , .mat-column-Delete , .mat-column-body {
-    flex: 0 0 7.5%;
+    flex: 0 0 5.5%;
 }
 
 .mat-column-header{
-    flex: 0 0 15%; 
+    flex: 0 0 12.5%; 
 }
 
 .mat-column-publishDateTime{
-    flex: 0 0 12.5%; 
+    flex: 0 0 14%; 
 }
 
 .mat-column-insertUserName{
-    flex: 0 0 15%; 
-}
-
-.mat-column-updateUserName{
-    flex: 0 0 15%; 
-}
-
-.mat-column-updateUserDate{
     flex: 0 0 12.5%; 
 }
 
+.mat-column-updateUserName{
+    flex: 0 0 12.5%; 
+}
 
+.mat-column-updateUserDate{
+    flex: 0 0 14%; 
+} 
+
+.mat-column-userGroupName{
+    flex: 0 0 12.5%; 
+} 

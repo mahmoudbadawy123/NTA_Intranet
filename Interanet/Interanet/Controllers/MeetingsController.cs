@@ -61,8 +61,8 @@ namespace Interanet.API.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
                 UserData.UserId = this.User.Identity.GetUserId();
-                UserData.PublishDateTime = Convert.ToDateTime(model.PublishDateTime).ToLocalTime();
-                UserData.MeatingDateTime = Convert.ToDateTime(model.MeatingDateTime).ToLocalTime();
+                UserData.PublishDateTime = Convert.ToDateTime(model.PublishDateTime).ToUniversalTime().ToLocalTime();
+                UserData.MeatingDateTime = Convert.ToDateTime(model.MeatingDateTime).ToUniversalTime().ToLocalTime();
                 Res = await _MeetingsService.Update(model, UserData);
                 if (Res.IsDone == false)
                     return BadRequest(Res.Message);
@@ -144,26 +144,26 @@ namespace Interanet.API.Controllers
             }
         }
 
-        [Authorize(Roles = $"{UserTypes.USER},{UserTypes.ADMIN}")]
-        [HttpGet("GetAllMeetingsUsers/{MeetingId}")]
-        public async Task<IActionResult> GetAllMeetingsUsers(int MeetingId)
-        {
-            try
-            {
-                string[] JoinedTables = { "ApplicationUser" };
-                var Data = _UnitOfWork.ApplicationUserMeetings.FindAll(x => x.MeetingId == MeetingId, JoinedTables).Select(x=>new
-                {
-                    id=x.ApplicationUser.Id,
-                    name = x.ApplicationUser.FullName
-                }).ToList();
+        //[Authorize(Roles = $"{UserTypes.USER},{UserTypes.ADMIN}")]
+        //[HttpGet("GetAllMeetingsUsers/{MeetingId}")]
+        //public async Task<IActionResult> GetAllMeetingsUsers(int MeetingId)
+        //{
+        //    try
+        //    {
+        //        string[] JoinedTables = { "ApplicationUser" };
+        //        var Data = _UnitOfWork.ApplicationUserMeetings.FindAll(x => x.MeetingId == MeetingId, JoinedTables).Select(x=>new
+        //        {
+        //            id=x.ApplicationUser.Id,
+        //            name = x.ApplicationUser.FullName
+        //        }).ToList();
 
-                return Ok(Data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.InnerException);
-            }
-        }
+        //        return Ok(Data);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.InnerException);
+        //    }
+        //}
 
 
 

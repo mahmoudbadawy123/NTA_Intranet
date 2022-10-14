@@ -126,7 +126,7 @@ export class EmployeeMeetingsComponent implements OnInit {
         this.ShowData(event);
       }
       else {
-        this.alert.error("Can not Do any Operations in this Event as it is Owner For another User");
+        this.alert.warning("Can not Do any Operations in this Event as it is Owner For another User");
       }
     }
     this.refresh.next();

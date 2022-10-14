@@ -219,8 +219,12 @@ namespace Interanet.API.AutoMapperProfiles
                 opt => opt.MapFrom(src => src.MeetingId)
                 )
              .ForMember(
-                dest => dest.ApplicationUserId,
+                dest => dest.Id,
                 opt => opt.MapFrom(src => src.ApplicationUserId)
+                )
+             .ForMember(
+                dest => dest.Name,
+                opt => opt.MapFrom(src => src.ApplicationUser.FullName)
                 )
             ;
 

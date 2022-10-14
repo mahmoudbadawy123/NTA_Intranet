@@ -55,6 +55,7 @@ implements OnInit {
 
   ngOnInit() {
     this.UsersExceptMe();
+    this.ischecked = this.data?.isScheduledPublish == true ? true:false;
 
     this.selectedItems = [
     

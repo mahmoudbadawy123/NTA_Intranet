@@ -30,6 +30,7 @@ implements OnInit {
   }
 
   ngOnInit() {
+    this.page.size = 6;
     this.GetData();
   }
 

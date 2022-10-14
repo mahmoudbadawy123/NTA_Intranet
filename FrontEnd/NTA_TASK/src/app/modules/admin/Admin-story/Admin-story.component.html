@@ -64,8 +64,14 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header="body">  Body
         </mat-header-cell>
         <mat-cell *matCellDef="let element" data-label="body"> 
-          <mat-icon  class="Cursor" aria-label=" Body" [matTooltip]="element.body|| ''" >info</mat-icon>
+          <mat-icon  class="Cursor" aria-label=" Body" [matTooltip]="element.body" >info</mat-icon>
         </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="userGroupName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="userGroupName"> Reciever Department  
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="userGroupName"> {{element.userGroupName}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="publishDateTime">

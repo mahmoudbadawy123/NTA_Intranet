@@ -40,7 +40,7 @@ namespace Interanet.Business.Classes
                 Data.Id = (_UnitOfWork.RelatedSystems.GetAll().Select(x => (int?)x.Id).Max() ?? 0) + 1;
                 Data.SystemName = Request.SystemName;
                 Data.Link = Request.Link;
-                Data.PublishDateTime = Request.PublishDateTime;
+                Data.PublishDateTime = UserData.PublishDateTime;
                 Data.isScheduledPublish = Request.isScheduledPublish;
                 Data.InsertUserId = Request.InsertUserId;
                 Data.InsertUserDate = Request.InsertUserDate;
@@ -203,7 +203,7 @@ namespace Interanet.Business.Classes
             try
             {
                 RelatedSystem Data = _UnitOfWork.RelatedSystems.GetByIdAsync(Request.Id).Result;
-                Data.PublishDateTime = Request.PublishDateTime;
+                Data.PublishDateTime = UserData.PublishDateTime;
                 Data.isScheduledPublish = Request.isScheduledPublish;
                 Data.UpdateUserId = UserData.UserId;
                 Data.UpdateUserDate = DateTime.UtcNow.ToLocalTime();

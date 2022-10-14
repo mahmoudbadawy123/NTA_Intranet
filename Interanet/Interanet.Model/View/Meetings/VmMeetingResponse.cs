@@ -56,7 +56,8 @@ namespace Interanet.Model.View.Meetings
     public class VmApplicationUserMeeting
     {
         public int MeetingId { get; set; }
-        public string ApplicationUserId { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
 
     }
 

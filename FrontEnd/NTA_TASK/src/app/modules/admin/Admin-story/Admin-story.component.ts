@@ -27,6 +27,7 @@ public displayedColumns = [
   'id',
   'header',
   'body',
+  'userGroupName',
   'publishDateTime',
   'insertUserName',
   'updateUserName',

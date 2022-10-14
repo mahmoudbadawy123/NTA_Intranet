@@ -40,7 +40,7 @@ namespace Interanet.Business.Classes
 
                 Meeting Data = new Meeting();
                 Data.Id = (_UnitOfWork.Meetings.GetAll().Select(x => (int?)x.Id).Max() ?? 0) +1; 
-                Data.PublishDateTime = Request.PublishDateTime;
+                Data.PublishDateTime = UserData.PublishDateTime;
                 Data.Description = Request.Description;
                 Data.isScheduledPublish = Request.isScheduledPublish;
                 Data.InsertUserId = Request.InsertUserId;
@@ -129,7 +129,7 @@ namespace Interanet.Business.Classes
             VmGetAdminMeetingServiceResponse Response = new VmGetAdminMeetingServiceResponse();
             try
             {
-                string[] JoinedTables = { "ApplicationUserMeetings", "MeetingTypes", "ApplicationUser_InsertUser", "ApplicationUser_UpdateUser" };
+                string[] JoinedTables = { "ApplicationUserMeetings", "MeetingTypes", "ApplicationUser_InsertUser", "ApplicationUser_UpdateUser" , "ApplicationUsers" };
                 List<Meeting> Data = _UnitOfWork.Meetings.FindAll(x=>true, JoinedTables).ToList();
                 return Data;
             }
@@ -144,7 +144,7 @@ namespace Interanet.Business.Classes
             VmGetAdminMeetingServiceResponse Response = new VmGetAdminMeetingServiceResponse();
             try
             {
-                string[] JoinedTables = { "ApplicationUserMeetings", "MeetingTypes", "ApplicationUser_InsertUser", "ApplicationUser_UpdateUser" };
+                string[] JoinedTables = { "ApplicationUserMeetings", "MeetingTypes", "ApplicationUser_InsertUser", "ApplicationUser_UpdateUser" , "ApplicationUsers" };
                 List<Meeting> Data = _UnitOfWork.Meetings.FindAll(x => x.InsertUserId == UserId
                 || x.ApplicationUserMeetings.Select(x=> x.ApplicationUserId).Contains(UserId), JoinedTables).ToList();
                 return Data;
@@ -161,7 +161,7 @@ namespace Interanet.Business.Classes
             try
             {
                 Meeting Data = _UnitOfWork.Meetings.GetByIdAsync(Request.Id).Result;
-                Data.PublishDateTime = Request.PublishDateTime;
+                Data.PublishDateTime = UserData.PublishDateTime;
                 Data.Description = Request.Description;
                 Data.isScheduledPublish = Request.isScheduledPublish;
                 Data.UpdateUserId = UserData.UserId;

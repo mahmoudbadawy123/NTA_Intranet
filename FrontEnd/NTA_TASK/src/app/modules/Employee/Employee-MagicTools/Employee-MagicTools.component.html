@@ -17,13 +17,13 @@
           mat-raised-button
           (click)="RedirectToSysten(Obj)">Redirect to System</button>
         </mat-card-content>
-        <mat-card-actions align="end">
+        <!-- <mat-card-actions align="end">
           <span> Publisher is : {{Obj?.insertUserName}} </span> 
-        </mat-card-actions>
+        </mat-card-actions> -->
       </mat-card>
     </div>
 
-    <mat-paginator [length]="page.totalElements" [pageSize]="5" [pageSizeOptions]="[2,5, 10, 25, 100]"
+    <mat-paginator [length]="page.totalElements" [pageSize]="6" [pageSizeOptions]="[3,6, 9, 12, 24,48,100]"
     (page)="paginatorEvent = getServerData($event)">
   </mat-paginator>
   </div>

@@ -40,7 +40,7 @@ implements OnInit {
       meatingLocation: new FormControl(data?.meatingLocation),
       meatingLink: new FormControl(data?.meatingLink),
       meatingDateTime: new FormControl(data?.meatingDateTime),
-      recieverUserIds: new FormControl(),
+      recieverUserIds: new FormControl(data?.applicationUserMeetings),
       meatingTypeId: new FormControl(data?.meatingTypeId),
       isScheduledPublish: new FormControl(data?.isScheduledPublish),
       publishDateTime: new FormControl(data?.publishDateTime),
@@ -174,13 +174,14 @@ implements OnInit {
   ngOnInit() {
        
 
+    this.ischecked = this.data?.isScheduledPublish == true ? true:false;
 
 
-    this.LookUps.GetAllMeetingsUsers(this.data.id).subscribe(
-      res => {
-       this.form["recieverUserIds"].setValue(res);
-      }
-     );
+    // this.LookUps.GetAllMeetingsUsers(this.data.id).subscribe(
+    //   res => {
+    //    this.form["recieverUserIds"].setValue(res);
+    //   }
+    //  );
 
   }
   onItemSelect(item: any) {
