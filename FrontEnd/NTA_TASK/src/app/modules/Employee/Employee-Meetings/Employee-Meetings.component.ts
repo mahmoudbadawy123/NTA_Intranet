@@ -72,7 +72,7 @@ export class EmployeeMeetingsComponent implements OnInit {
 
   ShowOnlyactions: CalendarEventAction[] = [
     {
-      label: '<div class="btn btn-primary Show" >Show</div>',
+      label: '<div class="btn btn-primary Delete Show" >Show</div>',
       a11yLabel: 'Show',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.handleEvent('Show', event);

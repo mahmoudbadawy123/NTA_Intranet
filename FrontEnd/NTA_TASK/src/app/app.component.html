@@ -79,17 +79,20 @@
               NTA Calender </button>
           </div>
 
+
+          <div class="col-12 p-1">
+            <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
+              [routerLink]="['/Admin/Meetings']" [routerLinkActive]="['is-active']">
+              Meetings</button>
+          </div>
+
           <div class="col-12 p-1">
             <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
               [routerLink]="['/Admin/MagicTools']" [routerLinkActive]="['is-active']">
               Discover Magic Tools </button>
           </div>
 
-          <div class="col-12 p-1">
-            <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
-              [routerLink]="['/Admin/Meetings']" [routerLinkActive]="['is-active']">
-              My Meetings</button>
-          </div>
+
 
         </div>
 
@@ -113,11 +116,7 @@
               NTA Calender </button>
           </div>
 
-          <div class="col-12 p-1">
-            <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
-              [routerLink]="['/Employee/MagicTools']" [routerLinkActive]="['is-active']">
-              Discover Magic Tools </button>
-          </div>
+  
 
           <div class="col-12 p-1">
             <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
@@ -125,6 +124,12 @@
               My Meetings</button>
           </div>
 
+          <div class="col-12 p-1">
+            <button (click)="drawer.toggle();" mat-button class="MyNavBtn  w-100 "
+              [routerLink]="['/Employee/MagicTools']" [routerLinkActive]="['is-active']">
+              Discover Magic Tools </button>
+          </div>
+          
         </div>
 
 
